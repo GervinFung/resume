@@ -1,0 +1,26 @@
+{
+    "name": "resume",
+    "version": "0.0.0",
+    "description": "A web resume that can be generated into pdf",
+    "license": "MIT",
+    "scripts": {
+        "start": "vite",
+        "dev": "vite --host",
+        "build": "vite build",
+        "generate": "vite-node script/generate.ts",
+        "postinstall": "pnpm build && pnpm generate"
+    },
+    "dependencies": {
+        "@solidjs/router": "^0.6.0",
+        "solid-js": "^1.6.8"
+    },
+    "devDependencies": {
+        "@poolofdeath20/eslint-config": "^0.1.0",
+        "@types/node": "^18.11.18",
+        "puppeteer": "^19.4.1",
+        "typescript": "^4.9.4",
+        "vite": "^4.0.4",
+        "vite-node": "^0.26.3",
+        "vite-plugin-solid": "^2.5.0"
+    }
+}
