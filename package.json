@@ -4,18 +4,12 @@
     "description": "A web resume that can be generated into pdf",
     "license": "MIT",
     "scripts": {
-        "start": "vite",
-        "dev": "vite --host",
-        "build": "vite build",
-        "generate:resume": "vite-node script/generate/resume.ts",
-        "generate:env": "vite-node script/generate/env.ts",
-        "postinstall": "pnpm generate:env && pnpm build && pnpm generate:resume"
+        "postinstall": "make generate"
     },
     "dependencies": {
         "solid-js": "^1.6.8"
     },
     "devDependencies": {
-        "@poolofdeath20/eslint-config": "^0.1.0",
         "@types/node": "^18.11.18",
         "axios": "^1.2.2",
         "parse-dont-validate": "^4.1.0",

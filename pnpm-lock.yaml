@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@poolofdeath20/eslint-config': ^0.1.0
   '@types/node': ^18.11.18
   axios: ^1.2.2
   parse-dont-validate: ^4.1.0
@@ -16,7 +15,6 @@ dependencies:
   solid-js: 1.6.8
 
 devDependencies:
-  '@poolofdeath20/eslint-config': 0.1.0
   '@types/node': 18.11.18
   axios: 1.2.2
   parse-dont-validate: 4.1.0
@@ -585,18 +583,6 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
-    dev: true
-
-  /@poolofdeath20/eslint-config/0.1.0:
-    resolution: {integrity: sha512-rf0alleAlRtKT14YVfegz83PM5qlftcTfZYTds9ZfYDHO6Y7JFl4Qt/lqVeMArQzvyUSvqhzXXbBUPH0HJcaYQ==}
-    peerDependencies:
-      '@typescript-eslint/eslint-plugin': '*'
-      '@typescript-eslint/parser': '*'
-      eslint: '>=8'
-      eslint-plugin-import: '*'
-      eslint-plugin-jsx-a11y: '*'
-      eslint-plugin-react: '*'
-      eslint-plugin-styled-components-a11y: '*'
     dev: true
 
   /@types/node/18.11.18:
