@@ -1,7 +1,6 @@
 /* @refresh reload */
 import * as SolidJs from 'solid-js';
 import * as SolidWeb from 'solid-js/web';
-import * as SolidRoute from '@solidjs/router';
 import envs from './env';
 
 type Strings = ReadonlyArray<string>;
@@ -10,28 +9,15 @@ type Children = Readonly<{
     children: SolidJs.JSXElement;
 }>;
 
-const VerticalDash = ({ children }: Children) => (
+const VerticalDashContainer = () => (
     <div
         style={{
             margin: '0 16px',
         }}
     >
-        {children}
+        |
     </div>
 );
-
-const VerticalDashContainer = () => <VerticalDash>|</VerticalDash>;
-
-const HorizontalView = ({ children }: Children) => (
-    <div
-        style={{
-            display: 'flex',
-        }}
-    >
-        {children}
-    </div>
-);
-
 const HorizontalViews = (
     props: Readonly<
         | {
@@ -52,7 +38,12 @@ const HorizontalViews = (
     const { length } = props.items;
 
     return (
-        <HorizontalView>
+        <div
+            style={{
+                display: 'flex',
+                margin: '16px 0 0 0',
+            }}
+        >
             {props.type === 'text' ? (
                 <SolidJs.Index each={props.items}>
                     {(item, index) => (
@@ -65,30 +56,28 @@ const HorizontalViews = (
                     )}
                 </SolidJs.Index>
             ) : (
-                <>
-                    <SolidJs.Index each={props.items}>
-                        {(item, index) => {
-                            const { link, name } = item();
+                <SolidJs.Index each={props.items}>
+                    {(item, index) => {
+                        const { link, name } = item();
 
-                            return (
-                                <>
-                                    <a
-                                        href={link}
-                                        target="_blank"
-                                        rel="noreferrer noopener"
-                                    >
-                                        {name}
-                                    </a>
-                                    {index >= length - 1 ? null : (
-                                        <VerticalDashContainer />
-                                    )}
-                                </>
-                            );
-                        }}
-                    </SolidJs.Index>
-                </>
+                        return (
+                            <>
+                                <a
+                                    href={link}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                >
+                                    {name}
+                                </a>
+                                {index >= length - 1 ? null : (
+                                    <VerticalDashContainer />
+                                )}
+                            </>
+                        );
+                    }}
+                </SolidJs.Index>
             )}
-        </HorizontalView>
+        </div>
     );
 };
 
@@ -266,10 +255,12 @@ const App = () => {
     return (
         <div
             style={{
-                'font-family': fontFamily,
                 width: '100%',
                 display: 'grid',
                 'place-items': 'center',
+                'font-family': fontFamily,
+                'background-color': '#FFF',
+                color: '#000',
             }}
         >
             <Font family={fontFamily} />
@@ -348,6 +339,16 @@ const App = () => {
                                 <Title>
                                     WORKING / PROJECT EXPERIENCES / OPEN SOURCES
                                 </Title>
+                                <Section
+                                    project="Didian"
+                                    about="Fullstack Developer"
+                                    date="Jul 2022 - Current"
+                                    descriptions={[
+                                        'Improve the workflow of internal staff and external stakeholders',
+                                        'Gather requirements and implementation of features',
+                                        'Improved the performance of tests',
+                                    ]}
+                                />
                                 <Section
                                     project="NPM package"
                                     about="Publisher / Collaborator"

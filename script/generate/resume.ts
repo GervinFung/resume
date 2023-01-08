@@ -1,7 +1,7 @@
-import puppeteer from 'puppeteer';
 import fs from 'fs';
+import puppeteer from 'puppeteer';
 import childProcess from 'child_process';
-import promisifiedViteConfig from '../vite.config';
+import promisifiedViteConfig from '../../vite.config';
 
 const generateAsPdf = async () => {
     const viteConfig = await promisifiedViteConfig;
