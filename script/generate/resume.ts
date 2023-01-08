@@ -18,7 +18,8 @@ const generateAsPdf = async () => {
     const port = viteConfig.preview?.port;
     const goto = `http://localhost:${port}`;
     const server = childProcess
-        .exec('pnpm start')
+        .exec('make start')
+        .on('spawn', () => console.log(`Going to ${goto}`))
         .on('error', console.error)
         .on('kill', () => {
             server.kill('SIGINT');
@@ -27,13 +28,15 @@ const generateAsPdf = async () => {
     server.stderr?.setEncoding('utf-8');
     await new Promise<void>((resolve) => {
         server?.stdout?.on('data', (data) => {
+            console.log(data);
             if (data.includes(goto)) {
+                console.log('Generating Resume');
                 resolve();
             }
         });
     });
     await page.goto(goto);
-    const dir = 'build';
+    const dir = 'dist';
     if (fs.existsSync(dir)) {
         fs.rmdirSync(dir, {
             force: true,
