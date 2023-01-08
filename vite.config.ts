@@ -13,6 +13,7 @@ export default (() => {
         preview: serverConfig,
         build: {
             target: 'esnext',
+            outDir: `${process.cwd()}/build`,
         },
     });
 })();
