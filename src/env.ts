@@ -1,4 +1,4 @@
 const envs = {
-domain: 'https://poolofdeath20.vercel.app'
+domain: 'https://gervinfungdaxuen.vercel.app'
 } as const
 export default envs
