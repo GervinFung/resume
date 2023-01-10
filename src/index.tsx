@@ -134,21 +134,48 @@ const Section = ({
     date: string;
     about: string;
     project: string;
-    descriptions: Strings;
+    descriptions: ReadonlyArray<
+        Readonly<{
+            title: string;
+            descriptions: Strings;
+        }>
+    >;
 }>) => (
     <SectionView>
         <ParallelApart>
-            <div>
+            <div
+                style={{
+                    margin: '0 0 16px 0',
+                }}
+            >
                 <BoldText>{project}</BoldText>
                 <span> - </span>
-                <span>{about}</span>
+                <span
+                    style={{
+                        margin: '0 0 16px 0',
+                    }}
+                >
+                    {about}
+                </span>
             </div>
             <span>{date}</span>
         </ParallelApart>
         <ParallelApart>
             <VerticalView>
                 <SolidJs.Index each={descriptions}>
-                    {(description) => <li>{description()}</li>}
+                    {(lazyDescription) => {
+                        const description = lazyDescription();
+                        return (
+                            <>
+                                <li>{description.title}</li>
+                                <SolidJs.Index each={description.descriptions}>
+                                    {(description) => (
+                                        <div>{description()}</div>
+                                    )}
+                                </SolidJs.Index>
+                            </>
+                        );
+                    }}
                 </SolidJs.Index>
             </VerticalView>
         </ParallelApart>
@@ -324,7 +351,7 @@ const App = () => {
                                                 Sungai Long, Selangor, Malaysia
                                             </span>
                                         </div>
-                                        <span>May 2019 - Present</span>
+                                        <span>May 2019 - Dec 2022</span>
                                     </ParallelApart>
                                     <ParallelApart>
                                         <span>
@@ -344,9 +371,20 @@ const App = () => {
                                     about="Fullstack Developer"
                                     date="Jul 2022 - Current"
                                     descriptions={[
-                                        'Improve the workflow of internal staff and external stakeholders',
-                                        'Gather requirements and implementation of features',
-                                        'Improved the performance of tests',
+                                        {
+                                            title: 'Implemented a feature that allow agents to reattach documents',
+                                            descriptions: [],
+                                        },
+                                        {
+                                            title: 'Gather requirements and implementation of features',
+                                            descriptions: [''],
+                                        },
+                                        {
+                                            title: 'Improved the performance of tests',
+                                            descriptions: [
+                                                'The previous test took long to run, hence affecting pipeline and local testing',
+                                            ],
+                                        },
                                     ]}
                                 />
                                 <Section
@@ -354,9 +392,18 @@ const App = () => {
                                     about="Publisher / Collaborator"
                                     date="Dec 2021 - Present"
                                     descriptions={[
-                                        'parse-dont-validate - verify the shape of data without using schema',
-                                        'ts-add-js-extension - append .js to relative import of transpiled file',
-                                        'denoify - convert NPM pckage to Deno compatible package',
+                                        {
+                                            title: 'parse-dont-validate - verify the shape of data without using schema',
+                                            descriptions: [],
+                                        },
+                                        {
+                                            title: 'ts-add-js-extension - append .js to relative import of transpiled file',
+                                            descriptions: [],
+                                        },
+                                        {
+                                            title: 'denoify - convert NPM pckage to Deno compatible package',
+                                            descriptions: [],
+                                        },
                                     ]}
                                 />
                                 <Section
@@ -364,8 +411,19 @@ const App = () => {
                                     about="A UX friendlier tools to generate .gitignore template"
                                     date="May 2022 - Present"
                                     descriptions={[
-                                        'Web application made with NextJS and Mongo',
-                                        'Terminal application made with Rust',
+                                        {
+                                            title: 'Web application made with NextJS and Mongo',
+                                            descriptions: [
+                                                `I am using JetBrains IDE for Gradle and I can't figure out what directories/files are to be ignored`,
+                                                `I've searched for templates through Github and found a repository for it, but they don't have a website for developers to pick a template`,
+                                                `As such, I decided to scrap the templates in the repository found and build a website for better UI/UX experience`,
+                                                `I didn't measure traffic but there's 8 developers that starred the repo`,
+                                            ],
+                                        },
+                                        {
+                                            title: 'Terminal application made with Rust',
+                                            descriptions: [],
+                                        },
                                     ]}
                                 />
                                 <Section
@@ -373,7 +431,15 @@ const App = () => {
                                     about="Final Year Project (unmaintained)"
                                     date="Jan 2022 - March 2022"
                                     descriptions={[
-                                        'A web application for UTAR students to find room/unit for rent',
+                                        {
+                                            title: 'A web application for UTAR students to find room/unit for rent',
+                                            descriptions: [
+                                                'The website provided by UTAR to find room/unit for rent has a bad UI/UX',
+                                                'I had a very hard time finding room to rent with it',
+                                                `As I have the urge to solve this issue, I've decided to use it as my FYP`,
+                                                `Although this project is a success, I am not willing to propose it to UTAR due to maintenance issue`,
+                                            ],
+                                        },
                                     ]}
                                 />
                                 <Section
@@ -381,52 +447,72 @@ const App = () => {
                                     about="Internship Fullstack Developer"
                                     date="Oct 2021 - Dec 2021"
                                     descriptions={[
-                                        'Improve the workflow of internal staff and external stakeholders',
-                                        'Implement and optimize lot of price chart scrappers',
-                                    ]}
-                                />
-                                <Section
-                                    project="AI Chess Game"
-                                    about="First Open Source Project"
-                                    date="Jan 2021 - June 2021"
-                                    descriptions={[
-                                        'Implement strategies to analyse the structure of pieces',
-                                        'Use multithread to optimize AI processing',
+                                        {
+                                            title: 'Implement feature that allow marketing team to update the feature of a project',
+                                            descriptions: [],
+                                        },
+                                        {
+                                            title: 'Implement feature that allow developer to chose booking cancellation reason',
+                                            descriptions: [],
+                                        },
+                                        {
+                                            title: 'Implement and optimize 4 price chart scrappers',
+                                            descriptions: [],
+                                        },
                                     ]}
                                 />
                             </VerticalView>
                             <VerticalView>
                                 <Title>TECHNICAL SKILLS</Title>
-                                <ListSection
-                                    title="Languages"
-                                    items={[
-                                        'Java',
-                                        'TypeScript',
-                                        'Rust',
-                                        'C#',
-                                        'Dart',
-                                    ]}
-                                />
-                                <ListSection
-                                    title="Frontend Development"
-                                    items={[
-                                        'React',
-                                        'React Native',
-                                        'Material UI',
-                                        'Swing / JavaFX',
-                                        'Emotion / Styled Components',
-                                    ]}
-                                />
-                                <ListSection
-                                    title="Backend Development"
-                                    items={[
-                                        'Node',
-                                        'Express ',
-                                        'GraphQL',
-                                        'MongoDB',
-                                        'PostgreSQl',
-                                    ]}
-                                />
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        'justify-content': 'space-between',
+                                    }}
+                                >
+                                    <ListSection
+                                        title="Languages"
+                                        items={[
+                                            'Java',
+                                            'TypeScript',
+                                            'Rust',
+                                            'C#',
+                                            'Dart',
+                                            'Python',
+                                        ]}
+                                    />
+                                    <ListSection
+                                        title="Frontend Development"
+                                        items={[
+                                            'React',
+                                            'React Native',
+                                            'SolidJs',
+                                            'Material UI',
+                                            'Swing / JavaFX',
+                                            'Emotion / Styled Components',
+                                        ]}
+                                    />
+                                    <ListSection
+                                        title="Backend Development"
+                                        items={[
+                                            'Node',
+                                            'Fastify',
+                                            'Express ',
+                                            'GraphQL',
+                                            'MongoDB',
+                                            'PostgreSQl',
+                                        ]}
+                                    />
+                                    <ListSection
+                                        title="Testing Development"
+                                        items={[
+                                            'Unit',
+                                            'Integration',
+                                            'UI Snapshot',
+                                            'E2E',
+                                        ]}
+                                    />
+                                </div>
                             </VerticalView>
                             <VerticalView>
                                 <Title>SPOKEN LANGUAGES</Title>
