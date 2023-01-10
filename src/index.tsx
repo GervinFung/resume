@@ -160,19 +160,50 @@ const Section = ({
             </div>
             <span>{date}</span>
         </ParallelApart>
+
         <ParallelApart>
             <VerticalView>
                 <SolidJs.Index each={descriptions}>
                     {(lazyDescription) => {
                         const description = lazyDescription();
+                        const { length } = description.descriptions;
+                        const [title, subDescription] =
+                            description.title.split(' - ');
                         return (
                             <>
-                                <li>{description.title}</li>
-                                <SolidJs.Index each={description.descriptions}>
-                                    {(description) => (
-                                        <div>{description()}</div>
-                                    )}
-                                </SolidJs.Index>
+                                <li>
+                                    <BoldText>{title}</BoldText>
+                                    {!subDescription
+                                        ? null
+                                        : ` - ${subDescription}`}
+                                </li>
+                                <ul
+                                    class="dashed"
+                                    style={{
+                                        margin: 0,
+                                        'list-style-type': 'none',
+                                        width: '75%',
+                                    }}
+                                >
+                                    <SolidJs.Index
+                                        each={description.descriptions}
+                                    >
+                                        {(description, index) => (
+                                            <li
+                                                style={{
+                                                    'text-indent': '-20px',
+                                                    margin: `8px 0 ${
+                                                        index !== length - 1
+                                                            ? 0
+                                                            : '8px'
+                                                    } 0`,
+                                                }}
+                                            >
+                                                {description()}
+                                            </li>
+                                        )}
+                                    </SolidJs.Index>
+                                </ul>
                             </>
                         );
                     }}
@@ -394,15 +425,33 @@ const App = () => {
                                     descriptions={[
                                         {
                                             title: 'parse-dont-validate - verify the shape of data without using schema',
-                                            descriptions: [],
+                                            descriptions: [
+                                                `It's impossible to know the type/shape of a data when it's received from resources outside the boundary of the application`,
+                                                'Assertion on type of data received must be done to reduce the possible occurence of type error',
+                                                `The problem with most schema/data validator is that it's quite magical, therefore hard to debug. Not to mention that some of it don't even return the data in the type desired, merely asserting`,
+                                                `This package was built to return the data in the expected type/shape, that way, it's intuitive and easier to debug as developers are using a function not a schema`,
+                                                `It has now over 1000 weekly downloads and it's used by 33 repositories`,
+                                            ],
                                         },
                                         {
-                                            title: 'ts-add-js-extension - append .js to relative import of transpiled file',
-                                            descriptions: [],
+                                            title: 'ts-add-js-extension - append .js to relative import/export of transpiled file',
+                                            descriptions: [
+                                                `When TypeScript code gets transpiled to JavaScript ESM format, it can't be executed because the relative import/export statement doesn't end with JavaScript file extension`,
+                                                `There are many packages that handle this situation very well, but it's limited only to TypeScript and is tightly coupled to the TypeScript compiler`,
+                                                `This package is not tightly coupled to any compiler, so it requires less setup and configuration`,
+                                                `As the creator of this package, I envision this package to have over 500 weekly download and be used across different repositories in the future`,
+                                                `Most importantly, as the first NPM package I created, I learnt a lot and now have the capability to debug many NPM packages`,
+                                            ],
                                         },
                                         {
-                                            title: 'denoify - convert NPM pckage to Deno compatible package',
-                                            descriptions: [],
+                                            title: 'denoify - convert NPM pckage to Deno compatible modules',
+                                            descriptions: [
+                                                `Since node and deno are 2 different runtime environment, I expected that there will be 2 codebase for 1 package/module`,
+                                                'Code duplication must be avoided and be used as last resort to publish NPM packages to Deno platform as it means more tedious work',
+                                                'Therefore, I found a NPM package that change NPM package to Deno modules',
+                                                'I believe this will be a great tool so I contributed to it. Especially a feature that allows configuration to be defined in another config file, like that of jest, prettier and eslint',
+                                                'As of now, this package has over 800 likes and is used by more than 300 repositories',
+                                            ],
                                         },
                                     ]}
                                 />
@@ -414,15 +463,24 @@ const App = () => {
                                         {
                                             title: 'Web application made with NextJS and Mongo',
                                             descriptions: [
-                                                `I am using JetBrains IDE for Gradle and I can't figure out what directories/files are to be ignored`,
-                                                `I've searched for templates through Github and found a repository for it, but they don't have a website for developers to pick a template`,
-                                                `As such, I decided to scrap the templates in the repository found and build a website for better UI/UX experience`,
-                                                `I didn't measure traffic but there's 8 developers that starred the repo`,
+                                                `I once used JetBrains IDE for Gradle and couldn't figure out what to be ignored by git`,
+                                                `Found a GitHub repository with various .gitignore templates, but it is tedious to search, copy and paste a template from GitHub`,
+                                                `So I scrap it and store it in Mongo then build a website to allow developers to copy/download various .gitignore templates in a UX friendly manner`,
+                                                `The templates will updated if there's update to that GitHub repository`,
+                                                `As a result of ease of use and UX friendliness, 8 developers had starred the repo`,
                                             ],
                                         },
                                         {
                                             title: 'Terminal application made with Rust',
-                                            descriptions: [],
+                                            descriptions: [
+                                                `I figured that some developers use terminal quite often too`,
+                                                `I dived into research on which low-level language is suitable for the task and can learn something new from it`,
+                                                `Rust came out on top for its borrow-checking feature, emphasis on immutability and it's fast`,
+                                                `The implementation concept is the same as that of the web version`,
+                                                `Cache all of the templates locally to improve performance`,
+                                                `Auto-detect whether the cache can be updated and prompt accordingly`,
+                                                'Ultimately, I learnt a lot by making a terminal application in Rust',
+                                            ],
                                         },
                                     ]}
                                 />
@@ -432,12 +490,16 @@ const App = () => {
                                     date="Jan 2022 - March 2022"
                                     descriptions={[
                                         {
-                                            title: 'A web application for UTAR students to find room/unit for rent',
+                                            title: 'A web application for UTAR students to find rentable unit/room',
                                             descriptions: [
                                                 'The website provided by UTAR to find room/unit for rent has a bad UI/UX',
-                                                'I had a very hard time finding room to rent with it',
-                                                `As I have the urge to solve this issue, I've decided to use it as my FYP`,
-                                                `Although this project is a success, I am not willing to propose it to UTAR due to maintenance issue`,
+                                                `Proposed a solution as my FYP to solve this issue`,
+                                                'I scrapped all the rooms/units and stored it in PostgreSQl Database',
+                                                'Display room/unit in a better way',
+                                                `Contain features like showing the room/units' location on Google Map, bookmarking room/unit`,
+                                                'Contains one-click button to contact the landlord/owner',
+                                                `Although this project is a success, I didn't propose it to UTAR due to time constraint`,
+                                                'It is also unmaintained because I think I learnt enough from it and moved on to other projects',
                                             ],
                                         },
                                     ]}
@@ -528,8 +590,6 @@ const App = () => {
         </div>
     );
 };
-
-export default App;
 
 SolidWeb.render(
     App,
