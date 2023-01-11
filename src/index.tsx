@@ -428,8 +428,8 @@ const App = () => {
                                             descriptions: [
                                                 `It's impossible to know the type/shape of a data when it's received from resources outside the boundary of the application`,
                                                 'Assertion on type of data received must be done to reduce the possible occurence of type error',
-                                                `The problem with most schema/data validator is that it's quite magical, therefore hard to debug. Not to mention that some of it don't even return the data in the type desired, merely asserting`,
-                                                `This package was built to return the data in the expected type/shape, that way, it's intuitive and easier to debug as developers are using a function not a schema`,
+                                                `The problem with most schema/data validator is that it's quite magical, therefore hard to debug. Not to mention that some of it don't even return the data in the proper type, merely asserting`,
+                                                `This package was built to return the data in the expected type/shape with function and not schema, therefore it's intuitive and easier to debug`,
                                                 `It has now over 1000 weekly downloads and it's used by 33 repositories`,
                                             ],
                                         },
@@ -439,6 +439,7 @@ const App = () => {
                                                 `When TypeScript code gets transpiled to JavaScript ESM format, it can't be executed because the relative import/export statement doesn't end with JavaScript file extension`,
                                                 `There are many packages that handle this situation very well, but it's limited only to TypeScript and is tightly coupled to the TypeScript compiler`,
                                                 `This package is not tightly coupled to any compiler, so it requires less setup and configuration`,
+                                                `Moreover, it can be used on JavaScript files too, since it deal with JavaScript files directly`,
                                                 `As the creator of this package, I envision this package to have over 500 weekly download and be used across different repositories in the future`,
                                                 `Most importantly, as the first NPM package I created, I learnt a lot and now have the capability to debug many NPM packages`,
                                             ],
@@ -446,8 +447,8 @@ const App = () => {
                                         {
                                             title: 'denoify - convert NPM pckage to Deno compatible modules',
                                             descriptions: [
-                                                `Since node and deno are 2 different runtime environment, I expected that there will be 2 codebase for 1 package/module`,
-                                                'Code duplication must be avoided and be used as last resort to publish NPM packages to Deno platform as it means more tedious work',
+                                                `Since Node and Deno are 2 different runtime environment, I expected that there will be 2 codebase for 1 package/module`,
+                                                'Code duplication must be avoided and be used as the last resort to publish NPM packages to Deno platform as it means more tedious work',
                                                 'Therefore, I found a NPM package that change NPM package to Deno modules',
                                                 'I believe this will be a great tool so I contributed to it. Especially a feature that allows configuration to be defined in another config file, like that of jest, prettier and eslint',
                                                 'As of now, this package has over 800 likes and is used by more than 300 repositories',
@@ -461,12 +462,12 @@ const App = () => {
                                     date="May 2022 - Present"
                                     descriptions={[
                                         {
-                                            title: 'Web application made with NextJS and Mongo',
+                                            title: 'Web application made with NextJS and MongoDB',
                                             descriptions: [
                                                 `I once used JetBrains IDE for Gradle and couldn't figure out what to be ignored by git`,
-                                                `Found a GitHub repository with various .gitignore templates, but it is tedious to search, copy and paste a template from GitHub`,
-                                                `So I scrap it and store it in Mongo then build a website to allow developers to copy/download various .gitignore templates in a UX friendly manner`,
-                                                `The templates will updated if there's update to that GitHub repository`,
+                                                `Then I Found a GitHub repository with various .gitignore templates, but it is tedious to search, copy and paste a template from GitHub`,
+                                                `So I scrap it and store it in MongoDB then build a website to allow developers to copy/download various .gitignore templates in a UX friendly manner`,
+                                                `The templates will updated if there's an update to that GitHub repository and the update will be triggerd when user visit the website`,
                                                 `As a result of ease of use and UX friendliness, 8 developers had starred the repo`,
                                             ],
                                         },
@@ -474,11 +475,10 @@ const App = () => {
                                             title: 'Terminal application made with Rust',
                                             descriptions: [
                                                 `I figured that some developers use terminal quite often too`,
-                                                `I dived into research on which low-level language is suitable for the task and can learn something new from it`,
+                                                `I dived into research on which low-level language is suitable for the task and subsequently I can benefit from it`,
                                                 `Rust came out on top for its borrow-checking feature, emphasis on immutability and it's fast`,
                                                 `The implementation concept is the same as that of the web version`,
-                                                `Cache all of the templates locally to improve performance`,
-                                                `Auto-detect whether the cache can be updated and prompt accordingly`,
+                                                `Except that it cache all of the templates locally to improve performance and reduce the possible occurence of network error. It can also auto-detect whether the cache can be updated and prompt accordingly`,
                                                 'Ultimately, I learnt a lot by making a terminal application in Rust',
                                             ],
                                         },
@@ -535,20 +535,16 @@ const App = () => {
                                     <ListSection
                                         title="Languages"
                                         items={[
-                                            'Java',
                                             'TypeScript',
+                                            'Java / C#',
                                             'Rust',
-                                            'C#',
                                             'Dart',
-                                            'Python',
                                         ]}
                                     />
                                     <ListSection
                                         title="Frontend Development"
                                         items={[
-                                            'React',
-                                            'React Native',
-                                            'SolidJs',
+                                            'React / React Native',
                                             'Material UI',
                                             'Swing / JavaFX',
                                             'Emotion / Styled Components',
@@ -557,7 +553,7 @@ const App = () => {
                                     <ListSection
                                         title="Backend Development"
                                         items={[
-                                            'Node',
+                                            'Node / Deno',
                                             'Fastify',
                                             'Express ',
                                             'GraphQL',
