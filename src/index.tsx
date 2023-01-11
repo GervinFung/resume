@@ -95,7 +95,6 @@ const ParallelApart = ({ children }: Children) => (
     <div
         style={{
             display: 'flex',
-            'align-items': 'center',
             'justify-content': 'space-between',
         }}
     >
@@ -160,7 +159,6 @@ const Section = ({
             </div>
             <span>{date}</span>
         </ParallelApart>
-
         <ParallelApart>
             <VerticalView>
                 <SolidJs.Index each={descriptions}>
@@ -171,7 +169,11 @@ const Section = ({
                             description.title.split(' - ');
                         return (
                             <>
-                                <li>
+                                <li
+                                    style={{
+                                        margin: '8px 0 0 0',
+                                    }}
+                                >
                                     <BoldText>{title}</BoldText>
                                     {!subDescription
                                         ? null
@@ -344,7 +346,7 @@ const App = () => {
                                 items={[
                                     links.gmail,
                                     '011-5548-4654',
-                                    'Tenom, Sabah, Malaysia',
+                                    'Puchong, Selangor, Malaysia',
                                 ]}
                             />
                             <HorizontalViews
@@ -389,7 +391,7 @@ const App = () => {
                                             Bachelor of Science (Honours)
                                             Software Engineering
                                         </span>
-                                        <span>CGPA: 3.4728/4.00</span>
+                                        <span>CGPA: 3.4051/4.00</span>
                                     </ParallelApart>
                                 </SectionView>
                             </VerticalView>
@@ -404,16 +406,38 @@ const App = () => {
                                     descriptions={[
                                         {
                                             title: 'Implemented a feature that allow agents to reattach documents',
-                                            descriptions: [],
+                                            descriptions: [
+                                                'In most cases, agent submit only the physical form and not the digital form needed as per businees requirement. After a unit sis locked, Sales Management team will request the documents from the agent, which means tedious',
+                                                'I have to work with Sales Management tem to gather requirements and clear the doubts, and Tech team to design and implement a solution together',
+                                                `After a lot of discussions, I found this project to have a lot of factors to be considered and it's intertwined with other projects and thus will have ripple effect`,
+                                                `Although I am not able to complete this project in time and I leave it to the senior engineer, I learnt that communication and gathering data is extremely important, otherwise, we might build the wrong stuff`,
+                                            ],
                                         },
                                         {
-                                            title: 'Gather requirements and implementation of features',
-                                            descriptions: [''],
+                                            title: 'Write SQL query for data analytics',
+                                            descriptions: [
+                                                'There is always a need for data analytics, for example, how many agencies had join the company from January to June, how many of them had we retain and so on',
+                                                'I need to find out various analytics as requested and show it on holistics.io',
+                                                `I raise questions if there's doubt on the queries needed, and also to clarify the purpose of the query, then only proceed to write the queries. During the process of writing queries, I consulted senior engineer on the SQL tables needed and the accuracy of result`,
+                                                'In the end some of the analytics will be shown to investors and some will be used to track the progress and KPIs',
+                                            ],
+                                        },
+                                        {
+                                            title: 'Optimize price chart scrappers',
+                                            descriptions: [
+                                                'We needed scrappers to mirror the booking status of various units for non-exclusive projects, but the result of our implementation is slow as we used puppeteer for it, which in turn used Chromium which takes up a lot of resources',
+                                                `While I was updating puppeteer or implementing new scrappers, I've noticed that all of the scrappers can be rewritten to use HTTP request and we just have to derived data from the JSON response, except for 1 project as it generate cookie at client side`,
+                                                'I rewrote all of the scrappers to be more performant and enforce a better assertion in test/runtime as the previous assertion was weak',
+                                                'After make all the changes, one of the price chart scrappers reduce the execution time from 2 minutes to 3 seconds and subsequently reduce the time taken to complete the tests as well',
+                                            ],
                                         },
                                         {
                                             title: 'Improved the performance of tests',
                                             descriptions: [
-                                                'The previous test took long to run, hence affecting pipeline and local testing',
+                                                'The previous test took long to run, hence affecting pipeline and local testing as we needed a quicker feedback',
+                                                'I am curious whether changing the testing framework from jest to vitest would improve test performance. Since vitest emphasis on backward compatibility, I can switch to vitest easily',
+                                                'The time taken for test to complete reduced from 11-12 mins to 9-10 mins, I then immediately change testing framework to vitest',
+                                                'Although there are problems during the process of making changes, it was worthwhile as developer can quickly get feedback from running tests',
                                             ],
                                         },
                                     ]}
@@ -448,9 +472,9 @@ const App = () => {
                                             title: 'denoify - convert NPM pckage to Deno compatible modules',
                                             descriptions: [
                                                 `Since Node and Deno are 2 different runtime environment, I expected that there will be 2 codebase for 1 package/module`,
-                                                'Code duplication must be avoided and be used as the last resort to publish NPM packages to Deno platform as it means more tedious work',
-                                                'Therefore, I found a NPM package that change NPM package to Deno modules',
-                                                'I believe this will be a great tool so I contributed to it. Especially a feature that allows configuration to be defined in another config file, like that of jest, prettier and eslint',
+                                                'Code duplication must be avoided and be used as the last resort to rewrite NPM packages into Deno modules',
+                                                'To avoid wasting effort, I found a NPM package that change NPM package to Deno modules',
+                                                'I believe this will be a great tool so I contributed to it. Especially a feature that allows configuration to be defined in another configuration file, like jest.config.js, .prettierrc and .eslintrc',
                                                 'As of now, this package has over 800 likes and is used by more than 300 repositories',
                                             ],
                                         },
@@ -478,7 +502,7 @@ const App = () => {
                                                 `I dived into research on which low-level language is suitable for the task and subsequently I can benefit from it`,
                                                 `Rust came out on top for its borrow-checking feature, emphasis on immutability and it's fast`,
                                                 `The implementation concept is the same as that of the web version`,
-                                                `Except that it cache all of the templates locally to improve performance and reduce the possible occurence of network error. It can also auto-detect whether the cache can be updated and prompt accordingly`,
+                                                `Caching was implemented in this case as it cache all of the templates locally to improve performance and reduce the possible occurence of network error. It can also auto-detect whether the cache can be updated and prompt accordingly`,
                                                 'Ultimately, I learnt a lot by making a terminal application in Rust',
                                             ],
                                         },
@@ -493,13 +517,12 @@ const App = () => {
                                             title: 'A web application for UTAR students to find rentable unit/room',
                                             descriptions: [
                                                 'The website provided by UTAR to find room/unit for rent has a bad UI/UX',
-                                                `Proposed a solution as my FYP to solve this issue`,
-                                                'I scrapped all the rooms/units and stored it in PostgreSQl Database',
+                                                `Meanwhile, I needed a topic for my FYP and ended up proposed a solution to solve this issue`,
+                                                'I successfully scrapped all the rooms/units and stored it in PostgreSQl Database',
                                                 'Display room/unit in a better way',
-                                                `Contain features like showing the room/units' location on Google Map, bookmarking room/unit`,
-                                                'Contains one-click button to contact the landlord/owner',
-                                                `Although this project is a success, I didn't propose it to UTAR due to time constraint`,
-                                                'It is also unmaintained because I think I learnt enough from it and moved on to other projects',
+                                                `Contain features including, but not limited to, showing the location room/unit on Google Map, bookmarking room/unit and one-click button to contact the landlord/owner through WhatsApp right away`,
+                                                `Although this project is a success I didn't plan to maintain it or propose it to UTAR due to time constraint - I see myself to be working on other projects instead`,
+                                                'Ultimately, I think I learnt a lot, especially in setting up pipeline for project that requires connection to a database, writing test for each implementation and making sure data received from both end are validated',
                                             ],
                                         },
                                     ]}
@@ -511,15 +534,22 @@ const App = () => {
                                     descriptions={[
                                         {
                                             title: 'Implement feature that allow marketing team to update the feature of a project',
-                                            descriptions: [],
+                                            descriptions: [''],
                                         },
                                         {
                                             title: 'Implement feature that allow developer to chose booking cancellation reason',
-                                            descriptions: [],
+                                            descriptions: [
+                                                // scale brower to 90%
+                                            ],
                                         },
                                         {
-                                            title: 'Implement and optimize 4 price chart scrappers',
-                                            descriptions: [],
+                                            title: 'Implement 4 price chart scrappers',
+                                            descriptions: [
+                                                'Price Chart scrapper can be in different forms, including, but not limited to, Google Sheet, svg icon in website, normal website',
+                                                `I've been tasked to obtain data through svg which can be challenging as it's not straight forward. In the end I was able to solve it even if the diagram can scale since the differences between 2 points are the same but of different vector, with that I calculated the distance of between buildings in diagram thus able to scrap the data accordingly`,
+                                                'I used HTTP request for the other scrapper to make it more performant, the challenging part is piecing together the various part of HTTP response that forms the cookie. Once the cookie is formed, I can send HTTP request with that cookie act as token',
+                                                `In the end, I've obtained skills to scrap data from website as it's an important skill to obtain data from third party`,
+                                            ],
                                         },
                                     ]}
                                 />
