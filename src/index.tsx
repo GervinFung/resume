@@ -95,7 +95,6 @@ const ParallelApart = ({ children }: Children) => (
     <div
         style={{
             display: 'flex',
-            'align-items': 'center',
             'justify-content': 'space-between',
         }}
     >
@@ -134,21 +133,82 @@ const Section = ({
     date: string;
     about: string;
     project: string;
-    descriptions: Strings;
+    descriptions: ReadonlyArray<
+        Readonly<{
+            title: string;
+            descriptions: Strings;
+        }>
+    >;
 }>) => (
     <SectionView>
         <ParallelApart>
-            <div>
+            <div
+                style={{
+                    margin: '0 0 16px 0',
+                }}
+            >
                 <BoldText>{project}</BoldText>
                 <span> - </span>
-                <span>{about}</span>
+                <span
+                    style={{
+                        margin: '0 0 16px 0',
+                    }}
+                >
+                    {about}
+                </span>
             </div>
             <span>{date}</span>
         </ParallelApart>
         <ParallelApart>
             <VerticalView>
                 <SolidJs.Index each={descriptions}>
-                    {(description) => <li>{description()}</li>}
+                    {(lazyDescription) => {
+                        const description = lazyDescription();
+                        const { length } = description.descriptions;
+                        const [title, subDescription] =
+                            description.title.split(' - ');
+                        return (
+                            <>
+                                <li
+                                    style={{
+                                        margin: '8px 0 0 0',
+                                    }}
+                                >
+                                    <BoldText>{title}</BoldText>
+                                    {!subDescription
+                                        ? null
+                                        : ` - ${subDescription}`}
+                                </li>
+                                <ul
+                                    class="dashed"
+                                    style={{
+                                        margin: 0,
+                                        'list-style-type': 'none',
+                                        width: '75%',
+                                    }}
+                                >
+                                    <SolidJs.Index
+                                        each={description.descriptions}
+                                    >
+                                        {(description, index) => (
+                                            <li
+                                                style={{
+                                                    'text-indent': '-20px',
+                                                    margin: `8px 0 ${
+                                                        index !== length - 1
+                                                            ? 0
+                                                            : '8px'
+                                                    } 0`,
+                                                }}
+                                            >
+                                                {description()}
+                                            </li>
+                                        )}
+                                    </SolidJs.Index>
+                                </ul>
+                            </>
+                        );
+                    }}
                 </SolidJs.Index>
             </VerticalView>
         </ParallelApart>
@@ -286,7 +346,7 @@ const App = () => {
                                 items={[
                                     links.gmail,
                                     '011-5548-4654',
-                                    'Tenom, Sabah, Malaysia',
+                                    'Puchong, Selangor, Malaysia',
                                 ]}
                             />
                             <HorizontalViews
@@ -324,14 +384,14 @@ const App = () => {
                                                 Sungai Long, Selangor, Malaysia
                                             </span>
                                         </div>
-                                        <span>May 2019 - Present</span>
+                                        <span>May 2019 - Dec 2022</span>
                                     </ParallelApart>
                                     <ParallelApart>
                                         <span>
                                             Bachelor of Science (Honours)
                                             Software Engineering
                                         </span>
-                                        <span>CGPA: 3.4728/4.00</span>
+                                        <span>CGPA: 3.4051/4.00</span>
                                     </ParallelApart>
                                 </SectionView>
                             </VerticalView>
@@ -344,9 +404,42 @@ const App = () => {
                                     about="Fullstack Developer"
                                     date="Jul 2022 - Current"
                                     descriptions={[
-                                        'Improve the workflow of internal staff and external stakeholders',
-                                        'Gather requirements and implementation of features',
-                                        'Improved the performance of tests',
+                                        {
+                                            title: 'Implemented a feature that allow agents to reattach documents',
+                                            descriptions: [
+                                                'In most cases, agent submit only the physical form and not the digital form needed as per businees requirement. After a unit sis locked, Sales Management team will request the documents from the agent, which means tedious',
+                                                'I have to work with Sales Management tem to gather requirements and clear the doubts, and Tech team to design and implement a solution together',
+                                                `After a lot of discussions, I found this project to have a lot of factors to be considered and it's intertwined with other projects and thus will have ripple effect`,
+                                                `Although I am not able to complete this project in time and I leave it to the senior engineer, I learnt that communication and gathering data is extremely important, otherwise, we might build the wrong stuff`,
+                                            ],
+                                        },
+                                        {
+                                            title: 'Write SQL query for data analytics',
+                                            descriptions: [
+                                                'There is always a need for data analytics, for example, how many agencies had join the company from January to June, how many of them had we retain and so on',
+                                                'I need to find out various analytics as requested and show it on holistics.io',
+                                                `I raise questions if there's doubt on the queries needed, and also to clarify the purpose of the query, then only proceed to write the queries. During the process of writing queries, I consulted senior engineer on the SQL tables needed and the accuracy of result`,
+                                                'In the end some of the analytics will be shown to investors and some will be used to track the progress and KPIs',
+                                            ],
+                                        },
+                                        {
+                                            title: 'Optimize price chart scrappers',
+                                            descriptions: [
+                                                'We needed scrappers to mirror the booking status of various units for non-exclusive projects, but the result of our implementation is slow as we used puppeteer for it, which in turn used Chromium which takes up a lot of resources',
+                                                `While I was updating puppeteer or implementing new scrappers, I've noticed that all of the scrappers can be rewritten to use HTTP request and we just have to derived data from the JSON response, except for 1 project as it generate cookie at client side`,
+                                                'I rewrote all of the scrappers to be more performant and enforce a better assertion in test/runtime as the previous assertion was weak',
+                                                'After make all the changes, one of the price chart scrappers reduce the execution time from 2 minutes to 3 seconds and subsequently reduce the time taken to complete the tests as well',
+                                            ],
+                                        },
+                                        {
+                                            title: 'Improved the performance of tests',
+                                            descriptions: [
+                                                'The previous test took long to run, hence affecting pipeline and local testing as we needed a quicker feedback',
+                                                'I am curious whether changing the testing framework from jest to vitest would improve test performance. Since vitest emphasis on backward compatibility, I can switch to vitest easily',
+                                                'The time taken for test to complete reduced from 11-12 mins to 9-10 mins, I then immediately change testing framework to vitest',
+                                                'Although there are problems during the process of making changes, it was worthwhile as developer can quickly get feedback from running tests',
+                                            ],
+                                        },
                                     ]}
                                 />
                                 <Section
@@ -354,9 +447,37 @@ const App = () => {
                                     about="Publisher / Collaborator"
                                     date="Dec 2021 - Present"
                                     descriptions={[
-                                        'parse-dont-validate - verify the shape of data without using schema',
-                                        'ts-add-js-extension - append .js to relative import of transpiled file',
-                                        'denoify - convert NPM pckage to Deno compatible package',
+                                        {
+                                            title: 'parse-dont-validate - verify the shape of data without using schema',
+                                            descriptions: [
+                                                `It's impossible to know the type/shape of a data when it's received from resources outside the boundary of the application`,
+                                                'Assertion on type of data received must be done to reduce the possible occurence of type error',
+                                                `The problem with most schema/data validator is that it's quite magical, therefore hard to debug. Not to mention that some of it don't even return the data in the proper type, merely asserting`,
+                                                `This package was built to return the data in the expected type/shape with function and not schema, therefore it's intuitive and easier to debug`,
+                                                `It has now over 1000 weekly downloads and it's used by 33 repositories`,
+                                            ],
+                                        },
+                                        {
+                                            title: 'ts-add-js-extension - append .js to relative import/export of transpiled file',
+                                            descriptions: [
+                                                `When TypeScript code gets transpiled to JavaScript ESM format, it can't be executed because the relative import/export statement doesn't end with JavaScript file extension`,
+                                                `There are many packages that handle this situation very well, but it's limited only to TypeScript and is tightly coupled to the TypeScript compiler`,
+                                                `This package is not tightly coupled to any compiler, so it requires less setup and configuration`,
+                                                `Moreover, it can be used on JavaScript files too, since it deal with JavaScript files directly`,
+                                                `As the creator of this package, I envision this package to have over 500 weekly download and be used across different repositories in the future`,
+                                                `Most importantly, as the first NPM package I created, I learnt a lot and now have the capability to debug many NPM packages`,
+                                            ],
+                                        },
+                                        {
+                                            title: 'denoify - convert NPM pckage to Deno compatible modules',
+                                            descriptions: [
+                                                `Since Node and Deno are 2 different runtime environment, I expected that there will be 2 codebase for 1 package/module`,
+                                                'Code duplication must be avoided and be used as the last resort to rewrite NPM packages into Deno modules',
+                                                'To avoid wasting effort, I found a NPM package that change NPM package to Deno modules',
+                                                'I believe this will be a great tool so I contributed to it. Especially a feature that allows configuration to be defined in another configuration file, like jest.config.js, .prettierrc and .eslintrc',
+                                                'As of now, this package has over 800 likes and is used by more than 300 repositories',
+                                            ],
+                                        },
                                     ]}
                                 />
                                 <Section
@@ -364,8 +485,27 @@ const App = () => {
                                     about="A UX friendlier tools to generate .gitignore template"
                                     date="May 2022 - Present"
                                     descriptions={[
-                                        'Web application made with NextJS and Mongo',
-                                        'Terminal application made with Rust',
+                                        {
+                                            title: 'Web application made with NextJS and MongoDB',
+                                            descriptions: [
+                                                `I once used JetBrains IDE for Gradle and couldn't figure out what to be ignored by git`,
+                                                `Then I Found a GitHub repository with various .gitignore templates, but it is tedious to search, copy and paste a template from GitHub`,
+                                                `So I scrap it and store it in MongoDB then build a website to allow developers to copy/download various .gitignore templates in a UX friendly manner`,
+                                                `The templates will updated if there's an update to that GitHub repository and the update will be triggerd when user visit the website`,
+                                                `As a result of ease of use and UX friendliness, 8 developers had starred the repo`,
+                                            ],
+                                        },
+                                        {
+                                            title: 'Terminal application made with Rust',
+                                            descriptions: [
+                                                `I figured that some developers use terminal quite often too`,
+                                                `I dived into research on which low-level language is suitable for the task and subsequently I can benefit from it`,
+                                                `Rust came out on top for its borrow-checking feature, emphasis on immutability and it's fast`,
+                                                `The implementation concept is the same as that of the web version`,
+                                                `Caching was implemented in this case as it cache all of the templates locally to improve performance and reduce the possible occurence of network error. It can also auto-detect whether the cache can be updated and prompt accordingly`,
+                                                'Ultimately, I learnt a lot by making a terminal application in Rust',
+                                            ],
+                                        },
                                     ]}
                                 />
                                 <Section
@@ -373,7 +513,18 @@ const App = () => {
                                     about="Final Year Project (unmaintained)"
                                     date="Jan 2022 - March 2022"
                                     descriptions={[
-                                        'A web application for UTAR students to find room/unit for rent',
+                                        {
+                                            title: 'A web application for UTAR students to find rentable unit/room',
+                                            descriptions: [
+                                                'The website provided by UTAR to find room/unit for rent has a bad UI/UX',
+                                                `Meanwhile, I needed a topic for my FYP and ended up proposed a solution to solve this issue`,
+                                                'I successfully scrapped all the rooms/units and stored it in PostgreSQl Database',
+                                                'Display room/unit in a better way',
+                                                `Contain features including, but not limited to, showing the location room/unit on Google Map, bookmarking room/unit and one-click button to contact the landlord/owner through WhatsApp right away`,
+                                                `Although this project is a success I didn't plan to maintain it or propose it to UTAR due to time constraint - I see myself to be working on other projects instead`,
+                                                'Ultimately, I think I learnt a lot, especially in setting up pipeline for project that requires connection to a database, writing test for each implementation and making sure data received from both end are validated',
+                                            ],
+                                        },
                                     ]}
                                 />
                                 <Section
@@ -381,52 +532,75 @@ const App = () => {
                                     about="Internship Fullstack Developer"
                                     date="Oct 2021 - Dec 2021"
                                     descriptions={[
-                                        'Improve the workflow of internal staff and external stakeholders',
-                                        'Implement and optimize lot of price chart scrappers',
-                                    ]}
-                                />
-                                <Section
-                                    project="AI Chess Game"
-                                    about="First Open Source Project"
-                                    date="Jan 2021 - June 2021"
-                                    descriptions={[
-                                        'Implement strategies to analyse the structure of pieces',
-                                        'Use multithread to optimize AI processing',
+                                        {
+                                            title: 'Implement feature that allow marketing team to update the feature of a project',
+                                            descriptions: [''],
+                                        },
+                                        {
+                                            title: 'Implement feature that allow developer to chose booking cancellation reason',
+                                            descriptions: [
+                                                // scale brower to 90%
+                                            ],
+                                        },
+                                        {
+                                            title: 'Implement 4 price chart scrappers',
+                                            descriptions: [
+                                                'Price Chart scrapper can be in different forms, including, but not limited to, Google Sheet, svg icon in website, normal website',
+                                                `I've been tasked to obtain data through svg which can be challenging as it's not straight forward. In the end I was able to solve it even if the diagram can scale since the differences between 2 points are the same but of different vector, with that I calculated the distance of between buildings in diagram thus able to scrap the data accordingly`,
+                                                'I used HTTP request for the other scrapper to make it more performant, the challenging part is piecing together the various part of HTTP response that forms the cookie. Once the cookie is formed, I can send HTTP request with that cookie act as token',
+                                                `In the end, I've obtained skills to scrap data from website as it's an important skill to obtain data from third party`,
+                                            ],
+                                        },
                                     ]}
                                 />
                             </VerticalView>
                             <VerticalView>
                                 <Title>TECHNICAL SKILLS</Title>
-                                <ListSection
-                                    title="Languages"
-                                    items={[
-                                        'Java',
-                                        'TypeScript',
-                                        'Rust',
-                                        'C#',
-                                        'Dart',
-                                    ]}
-                                />
-                                <ListSection
-                                    title="Frontend Development"
-                                    items={[
-                                        'React',
-                                        'React Native',
-                                        'Material UI',
-                                        'Swing / JavaFX',
-                                        'Emotion / Styled Components',
-                                    ]}
-                                />
-                                <ListSection
-                                    title="Backend Development"
-                                    items={[
-                                        'Node',
-                                        'Express ',
-                                        'GraphQL',
-                                        'MongoDB',
-                                        'PostgreSQl',
-                                    ]}
-                                />
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        'justify-content': 'space-between',
+                                    }}
+                                >
+                                    <ListSection
+                                        title="Languages"
+                                        items={[
+                                            'TypeScript',
+                                            'Java / C#',
+                                            'Rust',
+                                            'Dart',
+                                        ]}
+                                    />
+                                    <ListSection
+                                        title="Frontend Development"
+                                        items={[
+                                            'React / React Native',
+                                            'Material UI',
+                                            'Swing / JavaFX',
+                                            'Emotion / Styled Components',
+                                        ]}
+                                    />
+                                    <ListSection
+                                        title="Backend Development"
+                                        items={[
+                                            'Node / Deno',
+                                            'Fastify',
+                                            'Express ',
+                                            'GraphQL',
+                                            'MongoDB',
+                                            'PostgreSQl',
+                                        ]}
+                                    />
+                                    <ListSection
+                                        title="Testing Development"
+                                        items={[
+                                            'Unit',
+                                            'Integration',
+                                            'UI Snapshot',
+                                            'E2E',
+                                        ]}
+                                    />
+                                </div>
                             </VerticalView>
                             <VerticalView>
                                 <Title>SPOKEN LANGUAGES</Title>
@@ -442,8 +616,6 @@ const App = () => {
         </div>
     );
 };
-
-export default App;
 
 SolidWeb.render(
     App,

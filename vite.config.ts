@@ -3,7 +3,7 @@ import solidPlugin from 'vite-plugin-solid';
 
 export default (() => {
     const serverConfig = {
-        port: 8888,
+        port: 9999,
     };
 
     return defineConfig({

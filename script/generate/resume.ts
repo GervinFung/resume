@@ -36,7 +36,7 @@ const generateAsPdf = async () => {
         });
     });
     await page.goto(goto);
-    const dir = 'resume';
+    const dir = 'dist';
     if (fs.existsSync(dir)) {
         fs.rmdirSync(dir, {
             force: true,
