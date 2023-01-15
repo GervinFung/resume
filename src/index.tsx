@@ -321,6 +321,7 @@ const App = () => {
                 'font-family': fontFamily,
                 'background-color': '#FFF',
                 color: '#000',
+                'font-size': '0.95em',
             }}
         >
             <Font family={fontFamily} />
@@ -405,15 +406,6 @@ const App = () => {
                                     date="Jul 2022 - Current"
                                     descriptions={[
                                         {
-                                            title: 'Implemented a feature that allow agents to reattach documents',
-                                            descriptions: [
-                                                'In most cases, agent submit only the physical form and not the digital form needed as per businees requirement. After a unit sis locked, Sales Management team will request the documents from the agent, which means tedious',
-                                                'I have to work with Sales Management tem to gather requirements and clear the doubts, and Tech team to design and implement a solution together',
-                                                `After a lot of discussions, I found this project to have a lot of factors to be considered and it's intertwined with other projects and thus will have ripple effect`,
-                                                `Although I am not able to complete this project in time and I leave it to the senior engineer, I learnt that communication and gathering data is extremely important, otherwise, we might build the wrong stuff`,
-                                            ],
-                                        },
-                                        {
                                             title: 'Write SQL query for data analytics',
                                             descriptions: [
                                                 'There is always a need for data analytics, for example, how many agencies had join the company from January to June, how many of them had we retain and so on',
@@ -426,7 +418,7 @@ const App = () => {
                                             title: 'Optimize price chart scrappers',
                                             descriptions: [
                                                 'We needed scrappers to mirror the booking status of various units for non-exclusive projects, but the result of our implementation is slow as we used puppeteer for it, which in turn used Chromium which takes up a lot of resources',
-                                                `While I was updating puppeteer or implementing new scrappers, I've noticed that all of the scrappers can be rewritten to use HTTP request and we just have to derived data from the JSON response, except for 1 project as it generate cookie at client side`,
+                                                `While I was updating puppeteer or implementing new scrappers, I've noticed that all of the scrappers can be rewritten to use HTTP request and we just have to derived the data from the JSON response, except for 1 project as it generate cookie at the client side`,
                                                 'I rewrote all of the scrappers to be more performant and enforce a better assertion in test/runtime as the previous assertion was weak',
                                                 'After make all the changes, one of the price chart scrappers reduce the execution time from 2 minutes to 3 seconds and subsequently reduce the time taken to complete the tests as well',
                                             ],
@@ -533,21 +525,21 @@ const App = () => {
                                     date="Oct 2021 - Dec 2021"
                                     descriptions={[
                                         {
-                                            title: 'Implement feature that allow marketing team to update the feature of a project',
-                                            descriptions: [''],
-                                        },
-                                        {
-                                            title: 'Implement feature that allow developer to chose booking cancellation reason',
+                                            title: 'Implement feature that allow marketing team to edit the Estore Project Teaser',
                                             descriptions: [
-                                                // scale brower to 90%
+                                                'In order to best represent the teaser, marketing team need to add/edit descriptions and pictures of new project for agent to do presentation on a project through an excel sheet and the excel sheet will be given go Design team to design it',
+                                                `After discussing with the marketing team, we've decide to let them update the information of Estore Project Teaser through the internal dashboard, mainly to reduce the necessity to rely on excel sheet as we can provide an interface for them to do it`,
+                                                `I've implemented it with careful design with GraphQL to reduce data overfetching/underfetching, getting needed data only to perform mutation, no more, no less and it's catered for backward compatibility so it's easier to change the GraphQL implementation`,
+
+                                                `As a result, the Marketing team abandon excel sheet and start to use the the internal dashboard as it's more efficient, more UX friendly and it reduce the back and forth between Tech team and Marketing team`,
                                             ],
                                         },
                                         {
                                             title: 'Implement 4 price chart scrappers',
                                             descriptions: [
                                                 'Price Chart scrapper can be in different forms, including, but not limited to, Google Sheet, svg icon in website, normal website',
-                                                `I've been tasked to obtain data through svg which can be challenging as it's not straight forward. In the end I was able to solve it even if the diagram can scale since the differences between 2 points are the same but of different vector, with that I calculated the distance of between buildings in diagram thus able to scrap the data accordingly`,
-                                                'I used HTTP request for the other scrapper to make it more performant, the challenging part is piecing together the various part of HTTP response that forms the cookie. Once the cookie is formed, I can send HTTP request with that cookie act as token',
+                                                `I've been tasked to obtain data through svg which can be challenging as it's not straight forward. In the end I was able to solve it even if the diagram can scale since the differences between 2 points are the same but of different vector, with that I calculated the distance between buildings in diagram thus able to scrap the data accordingly`,
+                                                'I used HTTP request for the other scrapper to make it more performant, the challenging part is piecing together the various part of HTTP response that forms the cookie. Once the cookie is formed, I can send HTTP request with that cookie as the token',
                                                 `In the end, I've obtained skills to scrap data from website as it's an important skill to obtain data from third party`,
                                             ],
                                         },
@@ -560,6 +552,7 @@ const App = () => {
                                     style={{
                                         display: 'flex',
                                         'justify-content': 'space-between',
+                                        width: '75%',
                                     }}
                                 >
                                     <ListSection
@@ -589,15 +582,6 @@ const App = () => {
                                             'GraphQL',
                                             'MongoDB',
                                             'PostgreSQl',
-                                        ]}
-                                    />
-                                    <ListSection
-                                        title="Testing Development"
-                                        items={[
-                                            'Unit',
-                                            'Integration',
-                                            'UI Snapshot',
-                                            'E2E',
                                         ]}
                                     />
                                 </div>

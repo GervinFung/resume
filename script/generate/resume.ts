@@ -1,21 +1,16 @@
 import fs from 'fs';
 import puppeteer from 'puppeteer';
 import childProcess from 'child_process';
-import promisifiedViteConfig from '../../vite.config';
+import treeKill from 'tree-kill';
 
 const generateAsPdf = async () => {
-    const viteConfig = await promisifiedViteConfig;
-    if (typeof viteConfig === 'function') {
-        throw new Error('Vite config is function');
-    }
-
     const browser = await puppeteer.launch({
         defaultViewport: null,
         args: ['--start-maximized'],
     });
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
-    const port = viteConfig.preview?.port;
+    const port = 9999;
     const goto = `http://localhost:${port}`;
     const server = childProcess
         .exec('make start')
@@ -36,7 +31,7 @@ const generateAsPdf = async () => {
         });
     });
     await page.goto(goto);
-    const dir = 'resume';
+    const dir = 'dist';
     if (fs.existsSync(dir)) {
         fs.rmdirSync(dir, {
             force: true,
@@ -57,7 +52,11 @@ const generateAsPdf = async () => {
     });
     await page.close();
     await browser.close();
-    server.kill('SIGINT');
+    const { pid } = server;
+    if (!pid) {
+        throw new Error('pid is undefined');
+    }
+    treeKill(pid);
     return {
         type: 'complete',
         path,
@@ -65,10 +64,7 @@ const generateAsPdf = async () => {
 };
 
 const main = () => {
-    generateAsPdf()
-        .then(console.log)
-        .catch(console.error)
-        .finally(() => process.kill(0));
+    generateAsPdf().then(console.log).catch(console.error);
 };
 
 main();
