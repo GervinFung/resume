@@ -17,8 +17,15 @@ const generateAsPdf = async () => {
         .on('spawn', () => console.log(`Going to ${goto}`))
         .on('error', console.error)
         .on('kill', () => {
-            server.kill('SIGINT');
+            kill();
         });
+    const kill = () => {
+        const { pid } = server;
+        if (!pid) {
+            throw new Error('pid is undefined');
+        }
+        treeKill(pid);
+    };
     server.stdout?.setEncoding('utf-8');
     server.stderr?.setEncoding('utf-8');
     await new Promise<void>((resolve) => {
@@ -52,11 +59,7 @@ const generateAsPdf = async () => {
     });
     await page.close();
     await browser.close();
-    const { pid } = server;
-    if (!pid) {
-        throw new Error('pid is undefined');
-    }
-    treeKill(pid);
+    kill();
     return {
         type: 'complete',
         path,

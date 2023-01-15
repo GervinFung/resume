@@ -169,11 +169,7 @@ const Section = ({
                             description.title.split(' - ');
                         return (
                             <>
-                                <li
-                                    style={{
-                                        margin: '8px 0 0 0',
-                                    }}
-                                >
+                                <li>
                                     <BoldText>{title}</BoldText>
                                     {!subDescription
                                         ? null
@@ -244,7 +240,6 @@ const InformationView = ({ children }: Children) => (
     <div
         style={{
             display: 'grid',
-            'grid-gap': '4px',
         }}
     >
         {children}
@@ -256,7 +251,7 @@ const IntroInformationView = ({ children }: Children) => (
         style={{
             'place-items': 'center',
             display: 'grid',
-            margin: '0 0 64px 0',
+            margin: '0 0 32px 0',
         }}
     >
         {children}
@@ -334,7 +329,7 @@ const App = () => {
             >
                 <div
                     style={{
-                        padding: '64px 32px',
+                        padding: '32px 24px',
                         width: '100%',
                         'box-sizing': 'border-box',
                     }}
@@ -408,66 +403,59 @@ const App = () => {
                                         {
                                             title: 'Write SQL query for data analytics',
                                             descriptions: [
-                                                'There is always a need for data analytics, for example, how many agencies had join the company from January to June, how many of them had we retain and so on',
-                                                'I need to find out various analytics as requested and show it on holistics.io',
-                                                `I raise questions if there's doubt on the queries needed, and also to clarify the purpose of the query, then only proceed to write the queries. During the process of writing queries, I consulted senior engineer on the SQL tables needed and the accuracy of result`,
-                                                'In the end some of the analytics will be shown to investors and some will be used to track the progress and KPIs',
+                                                'Analyze key metrics including, but not limited to, agency acquisition and retention rates from January to June',
+                                                'I gather and analyze data, as requested, utilizing Holistics.io for presentation of finding. I also proactively identified and resolved potential issues by effectively communicating with stakeholders and consulting with senior engineers to ensure the proper SQL tables were utilized and the accuracy of results, while writing complex queries',
+                                                'The analytical findings will be tilized to present key insights to investors and track progress and KPIs for the busi',
                                             ],
                                         },
                                         {
                                             title: 'Optimize price chart scrappers',
                                             descriptions: [
-                                                'We needed scrappers to mirror the booking status of various units for non-exclusive projects, but the result of our implementation is slow as we used puppeteer for it, which in turn used Chromium which takes up a lot of resources',
-                                                `While I was updating puppeteer or implementing new scrappers, I've noticed that all of the scrappers can be rewritten to use HTTP request and we just have to derived the data from the JSON response, except for 1 project as it generate cookie at the client side`,
-                                                'I rewrote all of the scrappers to be more performant and enforce a better assertion in test/runtime as the previous assertion was weak',
-                                                'After make all the changes, one of the price chart scrappers reduce the execution time from 2 minutes to 3 seconds and subsequently reduce the time taken to complete the tests as well',
+                                                'Implemented web scraping solutions to mirror the booking status of various units for non-exclusive projects, utilizing Puppeteer and Chromium, however, resulted in decreased performance due to high resource utilization',
+                                                `I identified and implemented an optimized solution for web scraping by rewriting existing scrapers to utilize HTTP requests and parsing JSON responses, resulting in improved performance and efficiency. Exceptionally, one project required maintaining the use of a client-side cookie generation`,
+                                                'As a result, rewriting web scrapers result in significant time savings. Specifically, one price chart scraper reduced execution time from 2 minutes to just 3 seconds',
+                                            ],
+                                        },
+                                        {
+                                            title: 'Improved hot-reload and build time of internal dashboard and backend',
+                                            descriptions: [
+                                                'I saw the limitations of using outdated Webpack v4 as a bundler, which hindered performance and caused poor hot-reloading during development, resulting in increased frustration and wasted time for developers',
+                                                'I addressed the performance and development issues by consulting with senior engineers and taking the initiative to implement alternative bundlers, specifically updating to vite for the dashboard and esbuild for the backend',
+                                                'By utilizing excellent documentation, I successfully migrated vite for the dashboard and esbuild for the backend and overcoming any compatibility issues, such as differences in handling of environment variables and distinct differences in handling of assets compared to the previous bundler, Webpack',
+                                                'The migration process ultimately proved successful, and the developers were thrilled with the improved performance and usability of the new bundler',
+                                            ],
+                                        },
+                                        {
+                                            title: 'Replaced NPM with PNPM',
+                                            descriptions: [
+                                                'I proposed the adoption of pnpm as package manager as I saw the slow installation times (approx 11-12 minutes) and security issues with npm, following consultations with the tech team',
+                                                `I undertook the process of switching package managers from npm to pnpm upon agreement, which presented challenges due to pnpm's linking of packages in the local store and the need to install missing or compatible dependencies. Utilized pnpm's migration command to produce a lockfile in yaml, allowing for the preservation of package versioning consistency previously established with npm`,
+                                                `Afer successfully transitioned package manager, there's a significant reduction of installation time from 11-12 minutes to 3-4 minutes, improving the overall performance of the CI/CD pipeline. I documented the reasoning and process for the change for future reference and provided guidelines for other developers to follow, including snapshots of the CI/CD pipeline as evidence of improvement`,
                                             ],
                                         },
                                         {
                                             title: 'Improved the performance of tests',
                                             descriptions: [
-                                                'The previous test took long to run, hence affecting pipeline and local testing as we needed a quicker feedback',
-                                                'I am curious whether changing the testing framework from jest to vitest would improve test performance. Since vitest emphasis on backward compatibility, I can switch to vitest easily',
-                                                'The time taken for test to complete reduced from 11-12 mins to 9-10 mins, I then immediately change testing framework to vitest',
-                                                'Although there are problems during the process of making changes, it was worthwhile as developer can quickly get feedback from running tests',
+                                                'I noticed that tests took long to run, especially on the backend, reducing testing efficiency on CI/CD and local testing',
+                                                'I carefully evaluated various testing frameworks and, after consulting with senior engineers, decided to migrate from jest to vitest, based on positive feedback from the community and to improve testing efficiency',
+                                                'After that, I implemented a migration to vitest testing framework overcome challenges such as compatibility issues with some dependencies and the need to adjust configuration settings, such as disabling multithreading to run node-canvas for snapshot tests, and splitting tests into smaller groups for simultaneous execution',
+                                                'There is a reduction of backend testing time from 11-12 minutes to 9-10 minutes after implementing changes to the testing framework. I also communicated the changes to the tech team due to subtle compatibility with the previous framework, jest',
                                             ],
                                         },
                                     ]}
                                 />
                                 <Section
                                     project="NPM package"
-                                    about="Publisher / Collaborator"
+                                    about="Publisher"
                                     date="Dec 2021 - Present"
                                     descriptions={[
                                         {
                                             title: 'parse-dont-validate - verify the shape of data without using schema',
                                             descriptions: [
-                                                `It's impossible to know the type/shape of a data when it's received from resources outside the boundary of the application`,
-                                                'Assertion on type of data received must be done to reduce the possible occurence of type error',
-                                                `The problem with most schema/data validator is that it's quite magical, therefore hard to debug. Not to mention that some of it don't even return the data in the proper type, merely asserting`,
-                                                `This package was built to return the data in the expected type/shape with function and not schema, therefore it's intuitive and easier to debug`,
-                                                `It has now over 1000 weekly downloads and it's used by 33 repositories`,
-                                            ],
-                                        },
-                                        {
-                                            title: 'ts-add-js-extension - append .js to relative import/export of transpiled file',
-                                            descriptions: [
-                                                `When TypeScript code gets transpiled to JavaScript ESM format, it can't be executed because the relative import/export statement doesn't end with JavaScript file extension`,
-                                                `There are many packages that handle this situation very well, but it's limited only to TypeScript and is tightly coupled to the TypeScript compiler`,
-                                                `This package is not tightly coupled to any compiler, so it requires less setup and configuration`,
-                                                `Moreover, it can be used on JavaScript files too, since it deal with JavaScript files directly`,
-                                                `As the creator of this package, I envision this package to have over 500 weekly download and be used across different repositories in the future`,
-                                                `Most importantly, as the first NPM package I created, I learnt a lot and now have the capability to debug many NPM packages`,
-                                            ],
-                                        },
-                                        {
-                                            title: 'denoify - convert NPM pckage to Deno compatible modules',
-                                            descriptions: [
-                                                `Since Node and Deno are 2 different runtime environment, I expected that there will be 2 codebase for 1 package/module`,
-                                                'Code duplication must be avoided and be used as the last resort to rewrite NPM packages into Deno modules',
-                                                'To avoid wasting effort, I found a NPM package that change NPM package to Deno modules',
-                                                'I believe this will be a great tool so I contributed to it. Especially a feature that allows configuration to be defined in another configuration file, like jest.config.js, .prettierrc and .eslintrc',
-                                                'As of now, this package has over 800 likes and is used by more than 300 repositories',
+                                                `It is challenging to determine the type or shape of data when it is received from external sources outside of the application's boundaries`,
+                                                'To minimize the risk of type errors, assertions on the types of received data must be performed. However, many schema/data validation tools are difficult to debug due to their complex nature, and some do not return the data in the proper type, only providing assertions',
+                                                'This package was designed to return data in a specific format and shape using functions, rather than using a schema. This approach is intended to make the package more intuitive and easier to troubleshoot and debug',
+                                                `This package has gained significant popularity, as it has over 1000 weekly downloads and is used by 33 different repositories, suggesting that it is widely used and well-regarded in the programming community`,
                                             ],
                                         },
                                     ]}
@@ -480,41 +468,21 @@ const App = () => {
                                         {
                                             title: 'Web application made with NextJS and MongoDB',
                                             descriptions: [
-                                                `I once used JetBrains IDE for Gradle and couldn't figure out what to be ignored by git`,
-                                                `Then I Found a GitHub repository with various .gitignore templates, but it is tedious to search, copy and paste a template from GitHub`,
-                                                `So I scrap it and store it in MongoDB then build a website to allow developers to copy/download various .gitignore templates in a UX friendly manner`,
-                                                `The templates will updated if there's an update to that GitHub repository and the update will be triggerd when user visit the website`,
-                                                `As a result of ease of use and UX friendliness, 8 developers had starred the repo`,
+                                                'Previously I encountered difficulty using JetBrains IDE for Gradle in identifying files and directories to be ignored by git',
+                                                'I resolved the issue by discovering a GitHub repository that provides various .gitignore templates, but found the process of searching, copying and pasting the template to be tedious and time-consuming',
+                                                'So, I decided to develop a new system which utilizes MongoDB to store .gitignore templates, and built a website to allow developers to easily search, copy and download the templates in a user-friendly manner',
+                                                'The templates are kept updated by synchronizing with the original GitHub repository, and the updates are automatically triggered when users visit the website, ensuring they have access to the latest versions of the templates',
+                                                'The repository received 8 developer stars due to its ease of use and user-friendly interface',
                                             ],
                                         },
                                         {
                                             title: 'Terminal application made with Rust',
                                             descriptions: [
-                                                `I figured that some developers use terminal quite often too`,
-                                                `I dived into research on which low-level language is suitable for the task and subsequently I can benefit from it`,
-                                                `Rust came out on top for its borrow-checking feature, emphasis on immutability and it's fast`,
-                                                `The implementation concept is the same as that of the web version`,
-                                                `Caching was implemented in this case as it cache all of the templates locally to improve performance and reduce the possible occurence of network error. It can also auto-detect whether the cache can be updated and prompt accordingly`,
-                                                'Ultimately, I learnt a lot by making a terminal application in Rust',
-                                            ],
-                                        },
-                                    ]}
-                                />
-                                <Section
-                                    project="UTARi"
-                                    about="Final Year Project (unmaintained)"
-                                    date="Jan 2022 - March 2022"
-                                    descriptions={[
-                                        {
-                                            title: 'A web application for UTAR students to find rentable unit/room',
-                                            descriptions: [
-                                                'The website provided by UTAR to find room/unit for rent has a bad UI/UX',
-                                                `Meanwhile, I needed a topic for my FYP and ended up proposed a solution to solve this issue`,
-                                                'I successfully scrapped all the rooms/units and stored it in PostgreSQl Database',
-                                                'Display room/unit in a better way',
-                                                `Contain features including, but not limited to, showing the location room/unit on Google Map, bookmarking room/unit and one-click button to contact the landlord/owner through WhatsApp right away`,
-                                                `Although this project is a success I didn't plan to maintain it or propose it to UTAR due to time constraint - I see myself to be working on other projects instead`,
-                                                'Ultimately, I think I learnt a lot, especially in setting up pipeline for project that requires connection to a database, writing test for each implementation and making sure data received from both end are validated',
+                                                'I recognized that many developers frequently use the terminal',
+                                                'I donducted research to determine the most suitable low-level language for the task, and subsequently leveraged that knowledge to optimize performance',
+                                                `Rust was chosen for its strong features, performance and emphasis on immutability`,
+                                                'Caching was added to improve performance and prevent network errors by storing templates locally, with the option to update the cache automatically',
+                                                `Through developing a terminal application in Rust, I gained valuable experience, though it still requires further refinement`,
                                             ],
                                         },
                                     ]}
@@ -527,20 +495,21 @@ const App = () => {
                                         {
                                             title: 'Implement feature that allow marketing team to edit the Estore Project Teaser',
                                             descriptions: [
-                                                'In order to best represent the teaser, marketing team need to add/edit descriptions and pictures of new project for agent to do presentation on a project through an excel sheet and the excel sheet will be given go Design team to design it',
-                                                `After discussing with the marketing team, we've decide to let them update the information of Estore Project Teaser through the internal dashboard, mainly to reduce the necessity to rely on excel sheet as we can provide an interface for them to do it`,
-                                                `I've implemented it with careful design with GraphQL to reduce data overfetching/underfetching, getting needed data only to perform mutation, no more, no less and it's catered for backward compatibility so it's easier to change the GraphQL implementation`,
-
-                                                `As a result, the Marketing team abandon excel sheet and start to use the the internal dashboard as it's more efficient, more UX friendly and it reduce the back and forth between Tech team and Marketing team`,
+                                                // here boi
+                                                'Marketing team need to edit and update Estore Project Teaser details with excel sheet, then handed it over to tech/design team for implementation',
+                                                'I collaborated with the marketing team to streamline the process of updating the Estore Project Teaser information by implementing an interface on internal dashboard for them to use, thus reducing the need for external applications such as excel sheets and providing a more user-friendly interface',
+                                                `I've implemented it with a careful design that utilizes GraphQL to minimize data overfetching/underfetching, ensuring that only necessary data is retrieved for mutation, and catering for backward compatibility to allow for future changes to the GraphQL implementation`,
+                                                `The implementation of the internal dashboard for the Estore Project Teaser information resulted in the marketing team abandoning the use of excel sheets in favor of the new system as it improved working efficiency`,
                                             ],
                                         },
                                         {
                                             title: 'Implement 4 price chart scrappers',
                                             descriptions: [
-                                                'Price Chart scrapper can be in different forms, including, but not limited to, Google Sheet, svg icon in website, normal website',
+                                                'A price chart scraper can take on various forms, including Google Sheets, SVG icons on websites, or traditional website formats',
                                                 `I've been tasked to obtain data through svg which can be challenging as it's not straight forward. In the end I was able to solve it even if the diagram can scale since the differences between 2 points are the same but of different vector, with that I calculated the distance between buildings in diagram thus able to scrap the data accordingly`,
-                                                'I used HTTP request for the other scrapper to make it more performant, the challenging part is piecing together the various part of HTTP response that forms the cookie. Once the cookie is formed, I can send HTTP request with that cookie as the token',
-                                                `In the end, I've obtained skills to scrap data from website as it's an important skill to obtain data from third party`,
+                                                `I was tasked with obtaining data from SVG diagrams by developing a solution that can handle scalable diagrams. By calculating the distance between buildings in the diagram, I was able to accurately scrape the data`,
+                                                'I utilized HTTP requests for another scraper to improve performance. The challenging aspect was assembling the various parts of the HTTP response to form the cookie. Once this was accomplished, I was able to send HTTP requests with the cookie as the authentication token',
+                                                `Through this project, I gained valuable skills in web scraping, an important tool for obtaining data from third-party website`,
                                             ],
                                         },
                                     ]}
@@ -576,12 +545,10 @@ const App = () => {
                                     <ListSection
                                         title="Backend Development"
                                         items={[
-                                            'Node / Deno',
-                                            'Fastify',
-                                            'Express ',
+                                            'Node',
+                                            'Express',
                                             'GraphQL',
-                                            'MongoDB',
-                                            'PostgreSQl',
+                                            'MongoDB / PostgreSQl',
                                         ]}
                                     />
                                 </div>
