@@ -392,7 +392,7 @@ const App = () => {
                                                 Sungai Long, Selangor, Malaysia
                                             </span>
                                         </div>
-                                        <ItalicFont>{`(May 2019 - Dec 2022)`}</ItalicFont>
+                                        <span>May 2019 - Dec 2022</span>
                                     </ParallelApart>
                                     <ParallelApart>
                                         <span>
@@ -416,8 +416,8 @@ const App = () => {
                                             title: 'Write SQL query for data analytics',
                                             descriptions: [
                                                 'Analyze key metrics including, but not limited to, agency acquisition and retention rates from January to June',
-                                                'I gather and analyze data, as requested, utilizing Holistics.io for presentation of finding. I also proactively identified and resolved potential issues by effectively communicating with stakeholders and consulting with senior engineers to ensure the proper SQL tables were utilized and the accuracy of results, while writing complex queries',
-                                                'The analytical findings will be tilized to present key insights to investors and track progress and KPIs for the business',
+                                                'I gather and analyze data, as requested, utilizing Holistics.io for presentation of finding. I also identified and resolved potential issues by communicating with stakeholders and consulting with senior engineers to ensure the proper SQL tables were utilized and the accuracy of results, while writing complex queries',
+                                                'The analytical findings will be utilized to present key insights to investors and track progress and KPIs for the business',
                                             ],
                                         },
                                         {
