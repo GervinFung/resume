@@ -41,7 +41,6 @@ const HorizontalViews = (
         <div
             style={{
                 display: 'flex',
-                margin: '16px 0 0 0',
             }}
         >
             {props.type === 'text' ? (
@@ -81,10 +80,12 @@ const HorizontalViews = (
     );
 };
 
-const SectionView = ({ children }: Children) => (
+const FlexCenter = ({ children }: Children) => (
     <div
         style={{
-            margin: '0 0 16px 0',
+            display: 'flex',
+            'align-items': 'center',
+            margin: '0 0 8px 0',
         }}
     >
         {children}
@@ -95,6 +96,7 @@ const ParallelApart = ({ children }: Children) => (
     <div
         style={{
             display: 'flex',
+            'align-items': 'center',
             'justify-content': 'space-between',
         }}
     >
@@ -117,11 +119,20 @@ const VerticalView = ({ children }: Children) => (
         style={{
             width: '100%',
             display: 'grid',
-            'grid-gap': '4px',
         }}
     >
         {children}
     </div>
+);
+
+const ItalicFont = ({ children }: Children) => (
+    <span
+        style={{
+            'font-style': 'italic',
+        }}
+    >
+        {children}
+    </span>
 );
 
 const Section = ({
@@ -140,26 +151,26 @@ const Section = ({
         }>
     >;
 }>) => (
-    <SectionView>
-        <ParallelApart>
-            <div
-                style={{
-                    margin: '0 0 16px 0',
-                }}
-            >
+    <div>
+        <FlexCenter>
+            <div>
                 <BoldText>{project}</BoldText>
                 <span> - </span>
+                <span>{about}</span>
+            </div>
+            <div>
                 <span
                     style={{
-                        margin: '0 0 16px 0',
+                        visibility: 'hidden',
                     }}
                 >
-                    {about}
+                    {' '}
+                    -{' '}
                 </span>
+                <ItalicFont>{`(${date})`}</ItalicFont>
             </div>
-            <span>{date}</span>
-        </ParallelApart>
-        <ParallelApart>
+        </FlexCenter>
+        <FlexCenter>
             <VerticalView>
                 <SolidJs.Index each={descriptions}>
                     {(lazyDescription) => {
@@ -180,7 +191,6 @@ const Section = ({
                                     style={{
                                         margin: 0,
                                         'list-style-type': 'none',
-                                        width: '75%',
                                     }}
                                 >
                                     <SolidJs.Index
@@ -194,7 +204,7 @@ const Section = ({
                                                         index !== length - 1
                                                             ? 0
                                                             : '8px'
-                                                    } 0`,
+                                                    } -16px`,
                                                 }}
                                             >
                                                 {description()}
@@ -207,8 +217,8 @@ const Section = ({
                     }}
                 </SolidJs.Index>
             </VerticalView>
-        </ParallelApart>
-    </SectionView>
+        </FlexCenter>
+    </div>
 );
 
 const ListSection = ({
@@ -275,27 +285,25 @@ const Font = ({
     family,
 }: Readonly<{
     family: string;
-}>) => {
-    return (
-        <>
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link
-                rel="preconnect"
-                href="https://fonts.gstatic.com"
-                crossOrigin="anonymous"
-            />
-            <link
-                href={`https://fonts.googleapis.com/css2?family=${family
-                    .split(' ')
-                    .join('+')}:wght@${Array.from(
-                    { length: 9 },
-                    (_, index) => (index + 1) * 100
-                ).join(';')}&display=swap`}
-                rel="stylesheet"
-            />
-        </>
-    );
-};
+}>) => (
+    <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+        />
+        <link
+            href={`https://fonts.googleapis.com/css2?family=${family
+                .split(' ')
+                .join('+')}:wght@${Array.from(
+                { length: 9 },
+                (_, index) => (index + 1) * 100
+            ).join(';')}&display=swap`}
+            rel="stylesheet"
+        />
+    </>
+);
 
 const App = () => {
     const fontFamily = 'JetBrains Mono';
@@ -329,7 +337,7 @@ const App = () => {
             >
                 <div
                     style={{
-                        padding: '32px 24px',
+                        padding: '16px',
                         width: '100%',
                         'box-sizing': 'border-box',
                     }}
@@ -369,7 +377,11 @@ const App = () => {
                         <InformationView>
                             <VerticalView>
                                 <Title>EDUCATION</Title>
-                                <SectionView>
+                                <div
+                                    style={{
+                                        margin: '0 0 16px 0',
+                                    }}
+                                >
                                     <ParallelApart>
                                         <div>
                                             <BoldText>
@@ -380,7 +392,7 @@ const App = () => {
                                                 Sungai Long, Selangor, Malaysia
                                             </span>
                                         </div>
-                                        <span>May 2019 - Dec 2022</span>
+                                        <ItalicFont>{`(May 2019 - Dec 2022)`}</ItalicFont>
                                     </ParallelApart>
                                     <ParallelApart>
                                         <span>
@@ -389,7 +401,7 @@ const App = () => {
                                         </span>
                                         <span>CGPA: 3.4051/4.00</span>
                                     </ParallelApart>
-                                </SectionView>
+                                </div>
                             </VerticalView>
                             <VerticalView>
                                 <Title>
@@ -405,7 +417,7 @@ const App = () => {
                                             descriptions: [
                                                 'Analyze key metrics including, but not limited to, agency acquisition and retention rates from January to June',
                                                 'I gather and analyze data, as requested, utilizing Holistics.io for presentation of finding. I also proactively identified and resolved potential issues by effectively communicating with stakeholders and consulting with senior engineers to ensure the proper SQL tables were utilized and the accuracy of results, while writing complex queries',
-                                                'The analytical findings will be tilized to present key insights to investors and track progress and KPIs for the busi',
+                                                'The analytical findings will be tilized to present key insights to investors and track progress and KPIs for the business',
                                             ],
                                         },
                                         {
@@ -417,45 +429,12 @@ const App = () => {
                                             ],
                                         },
                                         {
-                                            title: 'Improved hot-reload and build time of internal dashboard and backend',
-                                            descriptions: [
-                                                'I saw the limitations of using outdated Webpack v4 as a bundler, which hindered performance and caused poor hot-reloading during development, resulting in increased frustration and wasted time for developers',
-                                                'I addressed the performance and development issues by consulting with senior engineers and taking the initiative to implement alternative bundlers, specifically updating to vite for the dashboard and esbuild for the backend',
-                                                'By utilizing excellent documentation, I successfully migrated vite for the dashboard and esbuild for the backend and overcoming any compatibility issues, such as differences in handling of environment variables and distinct differences in handling of assets compared to the previous bundler, Webpack',
-                                                'The migration process ultimately proved successful, and the developers were thrilled with the improved performance and usability of the new bundler',
-                                            ],
-                                        },
-                                        {
-                                            title: 'Replaced NPM with PNPM',
-                                            descriptions: [
-                                                'I proposed the adoption of pnpm as package manager as I saw the slow installation times (approx 11-12 minutes) and security issues with npm, following consultations with the tech team',
-                                                `I undertook the process of switching package managers from npm to pnpm upon agreement, which presented challenges due to pnpm's linking of packages in the local store and the need to install missing or compatible dependencies. Utilized pnpm's migration command to produce a lockfile in yaml, allowing for the preservation of package versioning consistency previously established with npm`,
-                                                `Afer successfully transitioned package manager, there's a significant reduction of installation time from 11-12 minutes to 3-4 minutes, improving the overall performance of the CI/CD pipeline. I documented the reasoning and process for the change for future reference and provided guidelines for other developers to follow, including snapshots of the CI/CD pipeline as evidence of improvement`,
-                                            ],
-                                        },
-                                        {
                                             title: 'Improved the performance of tests',
                                             descriptions: [
                                                 'I noticed that tests took long to run, especially on the backend, reducing testing efficiency on CI/CD and local testing',
                                                 'I carefully evaluated various testing frameworks and, after consulting with senior engineers, decided to migrate from jest to vitest, based on positive feedback from the community and to improve testing efficiency',
                                                 'After that, I implemented a migration to vitest testing framework overcome challenges such as compatibility issues with some dependencies and the need to adjust configuration settings, such as disabling multithreading to run node-canvas for snapshot tests, and splitting tests into smaller groups for simultaneous execution',
                                                 'There is a reduction of backend testing time from 11-12 minutes to 9-10 minutes after implementing changes to the testing framework. I also communicated the changes to the tech team due to subtle compatibility with the previous framework, jest',
-                                            ],
-                                        },
-                                    ]}
-                                />
-                                <Section
-                                    project="NPM package"
-                                    about="Publisher"
-                                    date="Dec 2021 - Present"
-                                    descriptions={[
-                                        {
-                                            title: 'parse-dont-validate - verify the shape of data without using schema',
-                                            descriptions: [
-                                                `It is challenging to determine the type or shape of data when it is received from external sources outside of the application's boundaries`,
-                                                'To minimize the risk of type errors, assertions on the types of received data must be performed. However, many schema/data validation tools are difficult to debug due to their complex nature, and some do not return the data in the proper type, only providing assertions',
-                                                'This package was designed to return data in a specific format and shape using functions, rather than using a schema. This approach is intended to make the package more intuitive and easier to troubleshoot and debug',
-                                                `This package has gained significant popularity, as it has over 1000 weekly downloads and is used by 33 different repositories, suggesting that it is widely used and well-regarded in the programming community`,
                                             ],
                                         },
                                     ]}
@@ -475,14 +454,21 @@ const App = () => {
                                                 'The repository received 8 developer stars due to its ease of use and user-friendly interface',
                                             ],
                                         },
+                                    ]}
+                                />
+                                <Section
+                                    project="UTARi"
+                                    about="Final Year Project (unmaintained)"
+                                    date="Jan 2022 - March 2022"
+                                    descriptions={[
                                         {
-                                            title: 'Terminal application made with Rust',
+                                            title: 'A web application for UTAR students to find rentable unit/room',
                                             descriptions: [
-                                                'I recognized that many developers frequently use the terminal',
-                                                'I donducted research to determine the most suitable low-level language for the task, and subsequently leveraged that knowledge to optimize performance',
-                                                `Rust was chosen for its strong features, performance and emphasis on immutability`,
-                                                'Caching was added to improve performance and prevent network errors by storing templates locally, with the option to update the cache automatically',
-                                                `Through developing a terminal application in Rust, I gained valuable experience, though it still requires further refinement`,
+                                                'Identify and addressed issues with the UI/UX of the UTAR website for finding room/unit rentals',
+                                                `Proposed a solution to improve the UI/UX of the UTAR website for finding room/unit rentals and selected as the topic for my FYP`,
+                                                'Successfully scrapped all rooms/units and stored the data in a PostgreSQL Database and developed features such as displaying room/unit location on Google Maps, bookmarking options, and one-click contact button for landlords/owners through WhatsApp. This will enhance the UX by providing easy access to relevant information and direct communication with landlords/owners',
+                                                `Despite the project's success, I did't plan to maintain it or propose it to UTAR due to time constraints, and instead chose to focus on other projects because `,
+                                                'Ultimately, I gained valuable experience in setting up pipelines for projects that require a database connection, writing tests for each implementation, and ensuring data validation',
                                             ],
                                         },
                                     ]}
@@ -495,20 +481,18 @@ const App = () => {
                                         {
                                             title: 'Implement feature that allow marketing team to edit the Estore Project Teaser',
                                             descriptions: [
-                                                // here boi
                                                 'Marketing team need to edit and update Estore Project Teaser details with excel sheet, then handed it over to tech/design team for implementation',
-                                                'I collaborated with the marketing team to streamline the process of updating the Estore Project Teaser information by implementing an interface on internal dashboard for them to use, thus reducing the need for external applications such as excel sheets and providing a more user-friendly interface',
-                                                `I've implemented it with a careful design that utilizes GraphQL to minimize data overfetching/underfetching, ensuring that only necessary data is retrieved for mutation, and catering for backward compatibility to allow for future changes to the GraphQL implementation`,
-                                                `The implementation of the internal dashboard for the Estore Project Teaser information resulted in the marketing team abandoning the use of excel sheets in favor of the new system as it improved working efficiency`,
+                                                'Collaborated with the marketing team to streamline the process of updating the Estore Project Teaser information by implementing an interface on internal dashboard for them to use, reducing the need for external applications such as excel sheets and providing a more user-friendly interface',
+                                                `Implemented it with a careful design that utilizes GraphQL to minimize data overfetching/underfetching, ensuring that only necessary data is retrieved for mutation, and catering for backward compatibility to allow for future changes to the GraphQL implementation`,
+                                                `Resulted in the marketing team abandoning the use of excel sheets in favor of the new system as it improved working efficiency`,
                                             ],
                                         },
                                         {
                                             title: 'Implement 4 price chart scrappers',
                                             descriptions: [
                                                 'A price chart scraper can take on various forms, including Google Sheets, SVG icons on websites, or traditional website formats',
-                                                `I've been tasked to obtain data through svg which can be challenging as it's not straight forward. In the end I was able to solve it even if the diagram can scale since the differences between 2 points are the same but of different vector, with that I calculated the distance between buildings in diagram thus able to scrap the data accordingly`,
-                                                `I was tasked with obtaining data from SVG diagrams by developing a solution that can handle scalable diagrams. By calculating the distance between buildings in the diagram, I was able to accurately scrape the data`,
-                                                'I utilized HTTP requests for another scraper to improve performance. The challenging aspect was assembling the various parts of the HTTP response to form the cookie. Once this was accomplished, I was able to send HTTP requests with the cookie as the authentication token',
+                                                `Tasked to obtain data through svg which can be challenging as it's not straight forward. In the end I was able to solve it even if the diagram can scale, since the differences between 2 points are the same but of different vector, with that I calculated the distance between buildings in diagram thus able to scrap the data accordingly`,
+                                                'Utilized HTTP requests for another scraper to improve performance. The challenging aspect was assembling the various parts of the HTTP response to form the cookie. Once this was accomplished, I was able to send HTTP requests with the cookie as the authentication token',
                                                 `Through this project, I gained valuable skills in web scraping, an important tool for obtaining data from third-party website`,
                                             ],
                                         },
@@ -521,7 +505,6 @@ const App = () => {
                                     style={{
                                         display: 'flex',
                                         'justify-content': 'space-between',
-                                        width: '75%',
                                     }}
                                 >
                                     <ListSection
