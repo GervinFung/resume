@@ -9,13 +9,15 @@ type Children = Readonly<{
     children: SolidJs.JSXElement;
 }>;
 
+const VerticalDash = () => <span>|</span>;
+
 const VerticalDashContainer = () => (
     <div
         style={{
             margin: '0 16px',
         }}
     >
-        |
+        <VerticalDash />
     </div>
 );
 const HorizontalViews = (
@@ -136,14 +138,15 @@ const ItalicFont = ({ children }: Children) => (
 );
 
 const Section = ({
-    date,
-    about,
     project,
     descriptions,
+    aboutAndDateList,
 }: Readonly<{
-    date: string;
-    about: string;
     project: string;
+    aboutAndDateList: ReadonlyArray<{
+        date: string;
+        about: string;
+    }>;
     descriptions: ReadonlyArray<
         Readonly<{
             title: string;
@@ -153,22 +156,41 @@ const Section = ({
 }>) => (
     <div>
         <FlexCenter>
-            <div>
+            <div
+                style={{
+                    margin: '0 8px 0 0',
+                }}
+            >
                 <BoldText>{project}</BoldText>
                 <span> - </span>
-                <span>{about}</span>
             </div>
-            <div>
-                <span
-                    style={{
-                        visibility: 'hidden',
+            {
+                <SolidJs.Index each={aboutAndDateList}>
+                    {(aboutAndDate, index) => {
+                        const { about, date } = aboutAndDate();
+
+                        return (
+                            <>
+                                <span>{about}</span>
+                                <div>
+                                    <span
+                                        style={{
+                                            visibility: 'hidden',
+                                        }}
+                                    >
+                                        {' '}
+                                        -{' '}
+                                    </span>
+                                    <ItalicFont>{`(${date})`}</ItalicFont>
+                                </div>
+                                {index >= aboutAndDateList.length - 1 ? null : (
+                                    <VerticalDashContainer />
+                                )}
+                            </>
+                        );
                     }}
-                >
-                    {' '}
-                    -{' '}
-                </span>
-                <ItalicFont>{`(${date})`}</ItalicFont>
-            </div>
+                </SolidJs.Index>
+            }
         </FlexCenter>
         <FlexCenter>
             <VerticalView>
@@ -324,7 +346,7 @@ const App = () => {
                 'font-family': fontFamily,
                 'background-color': '#FFF',
                 color: '#000',
-                'font-size': '0.95em',
+                'font-size': '0.9m',
             }}
         >
             <Font family={fontFamily} />
@@ -409,91 +431,85 @@ const App = () => {
                                 </Title>
                                 <Section
                                     project="Didian"
-                                    about="Fullstack Developer"
-                                    date="Jul 2022 - Current"
+                                    aboutAndDateList={[
+                                        {
+                                            date: 'Jul 2022 - Current',
+                                            about: 'Fullstack Developer',
+                                        },
+                                        {
+                                            date: 'Oct 2021 - Dec 2021',
+                                            about: 'Internship Fullstack Developer',
+                                        },
+                                    ]}
                                     descriptions={[
                                         {
                                             title: 'Write SQL query for data analytics',
                                             descriptions: [
-                                                'Analyze key metrics including, but not limited to, agency acquisition and retention rates from January to June',
-                                                'I gather and analyze data, as requested, utilizing Holistics.io for presentation of finding. I also identified and resolved potential issues by communicating with stakeholders and consulting with senior engineers to ensure the proper SQL tables were utilized and the accuracy of results, while writing complex queries',
-                                                'The analytical findings will be utilized to present key insights to investors and track progress and KPIs for the business',
+                                                'Analyzed key metrics including agency acquisition and retention rates using Holistics.io. Identified & resolved potential issues by communicating with stakeholders & consulting with senior engineers. Wrote complex queries to present key insights from findings to investors and to track progress & KPIs of the company',
                                             ],
                                         },
                                         {
                                             title: 'Optimize price chart scrappers',
                                             descriptions: [
-                                                'Implemented web scraping solutions to mirror the booking status of various units for non-exclusive projects, utilizing Puppeteer and Chromium, however, resulted in decreased performance due to high resource utilization',
-                                                `I identified and implemented an optimized solution for web scraping by rewriting existing scrapers to utilize HTTP requests and parsing JSON responses, resulting in improved performance and efficiency. Exceptionally, one project required maintaining the use of a client-side cookie generation`,
-                                                'As a result, rewriting web scrapers result in significant time savings. Specifically, one price chart scraper reduced execution time from 2 minutes to just 3 seconds',
+                                                `Implemented web scraping solutions to mirror booking status of units, utilising Puppeteer and Chromium, however, resulted in decreased performance due to high resource utilization. Rewrote scrapers to use HTTP requests and parse JSON responses, resulting in improved performance and efficiency as resource utilization is low and reduced risks of double booking. One of the price chart scraper reduced execution time from 2 minutes to 3 seconds`,
                                             ],
                                         },
                                         {
-                                            title: 'Improved the performance of tests',
+                                            title: 'Improved hot-reload and build time of internal dashboard and backend',
                                             descriptions: [
-                                                'I noticed that tests took long to run, especially on the backend, reducing testing efficiency on CI/CD and local testing',
-                                                'I carefully evaluated various testing frameworks and, after consulting with senior engineers, decided to migrate from jest to vitest, based on positive feedback from the community and to improve testing efficiency',
-                                                'After that, I implemented a migration to vitest testing framework overcome challenges such as compatibility issues with some dependencies and the need to adjust configuration settings, such as disabling multithreading to run node-canvas for snapshot tests, and splitting tests into smaller groups for simultaneous execution',
-                                                'There is a reduction of backend testing time from 11-12 minutes to 9-10 minutes after implementing changes to the testing framework. I also communicated the changes to the tech team due to subtle compatibility with the previous framework, jest',
+                                                'Webpack is slow, and developers have to wait some time to see the changes they have made. Alternative bundlers were proposed and implemented to improve performance and hot-reloading during development. Vite was successfully migrated for the dashboard and esbuild for the backend, overcoming compatibility issues. This resulted in increased developer satisfaction, as developers can now immediately check for the changes they have made',
+                                            ],
+                                        },
+                                        {
+                                            title: 'Replaced NPM with PNPM',
+                                            descriptions: [
+                                                `Implemented the transition from npm to pnpm as package manager, following consultations with the tech team, due to slow installation times (11-12 minutes) and security issues. Utilised pnpm's migration command to produce a lockfile in yaml and successfully reduced installation time from 11-12 minutes to 3-4 minutes, thereby improving the overall performance of the CI/CD pipeline. Documented the reasoning and process for the change and provided guidelines for other developers to follow, including snapshots of the CI/CD pipeline as evidence of improvement.`,
+                                            ],
+                                        },
+                                        {
+                                            title: 'Implement feature that allow marketing team to edit the Estore Project Teaser',
+                                            descriptions: [
+                                                'Collaborated with Marketing Team to streamline the process of updating Estore Project Teaser information by developing an internal dashboard interface, reducing need for external applications such as Excel sheets and providing user-friendly interface. Implemented using GraphQL to minimize data overfetching/underfetching, ensuring only necessary data is retrieved for mutation and catering for backward compatibility for future changes. Resulted in Marketing Team abandoning Excel sheets in favor of system, improving working efficiency and accuracy of data',
                                             ],
                                         },
                                     ]}
                                 />
                                 <Section
                                     project="Gitignored"
-                                    about="A UX friendlier tools to generate .gitignore template"
-                                    date="May 2022 - Present"
+                                    aboutAndDateList={[
+                                        {
+                                            date: 'May 2022 - Present',
+                                            about: 'A UX friendlier tools to generate .gitignore template',
+                                        },
+                                    ]}
                                     descriptions={[
                                         {
                                             title: 'Web application made with NextJS and MongoDB',
                                             descriptions: [
-                                                'Previously I encountered difficulty using JetBrains IDE for Gradle in identifying files and directories to be ignored by git',
-                                                'I resolved the issue by discovering a GitHub repository that provides various .gitignore templates, but found the process of searching, copying and pasting the template to be tedious and time-consuming',
-                                                'So, I decided to develop a new system which utilizes MongoDB to store .gitignore templates, and built a website to allow developers to easily search, copy and download the templates in a user-friendly manner',
-                                                'The templates are kept updated by synchronizing with the original GitHub repository, and the updates are automatically triggered when users visit the website, ensuring they have access to the latest versions of the templates',
-                                                'The repository received 8 developer stars due to its ease of use and user-friendly interface',
+                                                'Developed a new system utilizing MongoDB to store and manage .gitignore templates, creating a user-friendly website to allow developers to easily search, copy and download the templates as the existing method/website had a poor user experience. Synchronized with original GitHub repository to ensure users had access to latest versions. Received 8 developer stars due to ease of use and user-friendly interface',
+                                            ],
+                                        },
+                                        {
+                                            title: 'Terminal application made with Rust',
+                                            descriptions: [
+                                                'Recognized frequent use of terminal by developers. Conducted research to determine most suitable low-level language and selected Rust for its strong features, performance, and emphasis on immutability. Implemented caching to improve performance and prevent network errors by storing templates locally with option to update cache automatically',
                                             ],
                                         },
                                     ]}
                                 />
                                 <Section
                                     project="UTARi"
-                                    about="Final Year Project (unmaintained)"
-                                    date="Jan 2022 - March 2022"
+                                    aboutAndDateList={[
+                                        {
+                                            date: 'Jan 2022 - March 2022',
+                                            about: 'Final Year Project',
+                                        },
+                                    ]}
                                     descriptions={[
                                         {
                                             title: 'A web application for UTAR students to find rentable unit/room',
                                             descriptions: [
-                                                'Identify and addressed issues with the UI/UX of the UTAR website for finding room/unit rentals',
-                                                `Proposed a solution to improve the UI/UX of the UTAR website for finding room/unit rentals and selected as the topic for my FYP`,
-                                                'Successfully scrapped all rooms/units and stored the data in a PostgreSQL Database and developed features such as displaying room/unit location on Google Maps, bookmarking options, and one-click contact button for landlords/owners through WhatsApp. This will enhance the UX by providing easy access to relevant information and direct communication with landlords/owners',
-                                                `Despite the project's success, I did't plan to maintain it or propose it to UTAR due to time constraints, and instead chose to focus on other projects because `,
-                                                'Ultimately, I gained valuable experience in setting up pipelines for projects that require a database connection, writing tests for each implementation, and ensuring data validation',
-                                            ],
-                                        },
-                                    ]}
-                                />
-                                <Section
-                                    project="Didian"
-                                    about="Internship Fullstack Developer"
-                                    date="Oct 2021 - Dec 2021"
-                                    descriptions={[
-                                        {
-                                            title: 'Implement feature that allow marketing team to edit the Estore Project Teaser',
-                                            descriptions: [
-                                                'Marketing team need to edit and update Estore Project Teaser details with excel sheet, then handed it over to tech/design team for implementation',
-                                                'Collaborated with the marketing team to streamline the process of updating the Estore Project Teaser information by implementing an interface on internal dashboard for them to use, reducing the need for external applications such as excel sheets and providing a more user-friendly interface',
-                                                `Implemented it with a careful design that utilizes GraphQL to minimize data overfetching/underfetching, ensuring that only necessary data is retrieved for mutation, and catering for backward compatibility to allow for future changes to the GraphQL implementation`,
-                                                `Resulted in the marketing team abandoning the use of excel sheets in favor of the new system as it improved working efficiency`,
-                                            ],
-                                        },
-                                        {
-                                            title: 'Implement 4 price chart scrappers',
-                                            descriptions: [
-                                                'A price chart scraper can take on various forms, including Google Sheets, SVG icons on websites, or traditional website formats',
-                                                `Tasked to obtain data through svg which can be challenging as it's not straight forward. In the end I was able to solve it even if the diagram can scale, since the differences between 2 points are the same but of different vector, with that I calculated the distance between buildings in diagram thus able to scrap the data accordingly`,
-                                                'Utilized HTTP requests for another scraper to improve performance. The challenging aspect was assembling the various parts of the HTTP response to form the cookie. Once this was accomplished, I was able to send HTTP requests with the cookie as the authentication token',
-                                                `Through this project, I gained valuable skills in web scraping, an important tool for obtaining data from third-party website`,
+                                                'Identified and addressed UI/UX issues with the UTAR website for finding room/unit rentals. Proposed a solution to improve the user experience and selected as the topic for my FYP. Successfully scrapped all rooms/units and stored the data in a PostgreSQL Database. Developed features such as displaying room/unit location on Google Maps, bookmarking options, and one-click contact button for landlords/owners through WhatsApp, to enhance the user experience by providing easy access to relevant information and direct communication with landlords/owners. Gained valuable experience in setting up pipelines for projects requiring a database connection, writing tests for each implementation, and ensuring data validation',
                                             ],
                                         },
                                     ]}
