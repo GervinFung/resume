@@ -37,7 +37,10 @@ const generateAsPdf = async () => {
             }
         });
     });
-    await page.goto(goto);
+    await page.goto(goto, {
+        waitUntil: 'networkidle0',
+    });
+    await page.evaluateHandle('document.fonts.ready');
     const dir = 'dist';
     if (fs.existsSync(dir)) {
         fs.rmdirSync(dir, {
@@ -50,9 +53,6 @@ const generateAsPdf = async () => {
     const height =
         (await page.evaluate(() => document.documentElement.offsetHeight)) +
         200;
-    await page.screenshot({
-        fullPage: true,
-    });
     await page.pdf({
         path,
         height: `${height}px`,

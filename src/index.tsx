@@ -431,7 +431,7 @@ const App = () => {
                                     project="Didian"
                                     aboutAndDateList={[
                                         {
-                                            date: 'Jul 2022 - Current',
+                                            date: 'Jul 2022 - Jan 2023',
                                             about: 'Fullstack Developer',
                                         },
                                         {
