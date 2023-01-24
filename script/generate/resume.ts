@@ -6,7 +6,7 @@ import treeKill from 'tree-kill';
 const generateAsPdf = async () => {
     const browser = await puppeteer.launch({
         defaultViewport: null,
-        args: ['--start-maximized'],
+        args: ['--start-maximized', '--no-sandbox'],
     });
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
@@ -17,8 +17,15 @@ const generateAsPdf = async () => {
         .on('spawn', () => console.log(`Going to ${goto}`))
         .on('error', console.error)
         .on('kill', () => {
-            server.kill('SIGINT');
+            kill();
         });
+    const kill = () => {
+        const { pid } = server;
+        if (!pid) {
+            throw new Error('pid is undefined');
+        }
+        treeKill(pid);
+    };
     server.stdout?.setEncoding('utf-8');
     server.stderr?.setEncoding('utf-8');
     await new Promise<void>((resolve) => {
@@ -40,9 +47,9 @@ const generateAsPdf = async () => {
     }
     fs.mkdirSync(dir);
     const path = `${dir}/GervinFungDaXuen-Résumé.pdf` as const;
-    const height = await page.evaluate(
-        () => document.documentElement.offsetHeight
-    );
+    const height =
+        (await page.evaluate(() => document.documentElement.offsetHeight)) +
+        200;
     await page.screenshot({
         fullPage: true,
     });
@@ -52,11 +59,7 @@ const generateAsPdf = async () => {
     });
     await page.close();
     await browser.close();
-    const { pid } = server;
-    if (!pid) {
-        throw new Error('pid is undefined');
-    }
-    treeKill(pid);
+    kill();
     return {
         type: 'complete',
         path,
