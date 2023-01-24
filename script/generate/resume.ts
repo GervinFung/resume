@@ -6,7 +6,7 @@ import treeKill from 'tree-kill';
 const generateAsPdf = async () => {
     const browser = await puppeteer.launch({
         defaultViewport: null,
-        args: ['--start-maximized'],
+        args: ['--start-maximized', '--no-sandbox'],
     });
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
@@ -47,9 +47,9 @@ const generateAsPdf = async () => {
     }
     fs.mkdirSync(dir);
     const path = `${dir}/GervinFungDaXuen-Résumé.pdf` as const;
-    const height = await page.evaluate(
-        () => document.documentElement.offsetHeight
-    );
+    const height =
+        (await page.evaluate(() => document.documentElement.offsetHeight)) +
+        200;
     await page.screenshot({
         fullPage: true,
     });

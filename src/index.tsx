@@ -426,9 +426,7 @@ const App = () => {
                                 </div>
                             </VerticalView>
                             <VerticalView>
-                                <Title>
-                                    WORKING / PROJECT EXPERIENCES / OPEN SOURCES
-                                </Title>
+                                <Title>WORKING EXPERIENCES</Title>
                                 <Section
                                     project="Didian"
                                     aboutAndDateList={[
@@ -474,6 +472,9 @@ const App = () => {
                                         },
                                     ]}
                                 />
+                            </VerticalView>
+                            <VerticalView>
+                                <Title>OPEN SOURCES EXPERIENCES</Title>
                                 <Section
                                     project="Gitignored"
                                     aboutAndDateList={[
