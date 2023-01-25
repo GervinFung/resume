@@ -1,19 +1,18 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 
-export default (() => {
-    const serverConfig = {
+export default defineConfig(() => {
+    const serveConfig = {
         port: 9999,
     };
-
-    return defineConfig({
+    return {
         root: `${process.cwd()}/src`,
         plugins: [solidPlugin()],
-        server: serverConfig,
-        preview: serverConfig,
+        server: serveConfig,
+        preview: serveConfig,
         build: {
             target: 'esnext',
             outDir: `${process.cwd()}/build`,
         },
-    });
-})();
+    };
+});
