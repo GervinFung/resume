@@ -50,12 +50,16 @@ const generateAsPdf = async () => {
     }
     fs.mkdirSync(dir);
     const path = `${dir}/GervinFungDaXuen-Résumé.pdf` as const;
-    const height =
-        (await page.evaluate(() => document.documentElement.offsetHeight)) +
-        200;
     await page.pdf({
         path,
-        height: `${height}px`,
+        width: `${
+            (await page.evaluate(() => document.documentElement.offsetWidth)) /
+            1.5
+        }px`,
+        height: `${
+            (await page.evaluate(() => document.documentElement.offsetHeight)) +
+            200
+        }px`,
     });
     await page.close();
     await browser.close();
