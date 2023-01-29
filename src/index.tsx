@@ -359,7 +359,7 @@ const App = () => {
             >
                 <div
                     style={{
-                        padding: '16px',
+                        padding: '60px 48px',
                         width: '100%',
                         'box-sizing': 'border-box',
                     }}
@@ -398,6 +398,115 @@ const App = () => {
                         </IntroInformationView>
                         <InformationView>
                             <VerticalView>
+                                <Title>PROFESSIONAL EXPERIENCES</Title>
+                                <Section
+                                    project="Didian"
+                                    aboutAndDateList={[
+                                        {
+                                            date: 'Jul 2022 - Jan 2023',
+                                            about: 'Fullstack Developer',
+                                        },
+                                        {
+                                            date: 'Oct 2021 - Dec 2021',
+                                            about: 'Internship Fullstack Developer',
+                                        },
+                                    ]}
+                                    descriptions={[
+                                        {
+                                            title: 'Write SQL query for data analytics',
+                                            descriptions: [
+                                                'Analyzed key metrics with Holistics.io, identified & resolved issues, wrote complex queries to present insights to investors & track progress & KPIs',
+                                            ],
+                                        },
+                                        {
+                                            title: 'Optimize price chart scrappers',
+                                            descriptions: [
+                                                'Implemented web scraping solutions with Puppeteer and Chromium, resulting in decreased performance due to high resource utilization. Rewrote scrapers to use HTTP requests and parse JSON responses, improving performance and efficiency with low resource utilization and reduced risks of double booking. Price chart scraper execution time reduced from 2 minutes to 3 seconds',
+                                            ],
+                                        },
+                                        {
+                                            title: 'Improved hot-reload and build time of internal dashboard and backend',
+                                            descriptions: [
+                                                `Webpack's slow performance and long wait times (20s-30s) to see changes were addressed by implementing vite for the dashboard and esbuild for the backend, resulting in increased developer satisfaction as changes are now visible immediately (0.5s-2s)`,
+                                            ],
+                                        },
+                                        {
+                                            title: 'Replaced NPM with PNPM',
+                                            descriptions: [
+                                                `Implemented transition from npm to pnpm as package manager following tech team consultations due to slow installation times (11-12 minutes) and security issues. Utilised pnpm's migration command to generate yaml lockfile, resulting in improved installation time (3-4 minutes) and CI/CD pipeline performance. Documented reasoning and process, providing guidelines and snapshots of CI/CD pipeline as evidence of improvement`,
+                                            ],
+                                        },
+                                        {
+                                            title: 'Implement feature that allow marketing team to edit the Estore Project Teaser',
+                                            descriptions: [
+                                                `Developed an internal dashboard interface using GraphQL to streamline the process of updating Estore Project Teaser information, reducing need for external applications such as Excel sheets and providing user-friendly interface. This improved Marketing Team's working efficiency and accuracy of data, leading to abandonment of Excel sheets`,
+                                            ],
+                                        },
+                                    ]}
+                                />
+                            </VerticalView>
+                            <VerticalView>
+                                <Title>OPEN SOURCES PROJECTS</Title>
+                                <Section
+                                    project="NPM package"
+                                    aboutAndDateList={[
+                                        {
+                                            date: 'Dec 2021 - Present',
+                                            about: 'publisher / collaborator',
+                                        },
+                                    ]}
+                                    descriptions={[
+                                        {
+                                            title: 'parse-dont-validate - verify the shape of data without using schema',
+                                            descriptions: [
+                                                'Asserting the type of data received is essential to reduce type errors. This package, with over 1000 weekly downloads and 33 repositories, returns data in the expected type/shape with functions, making it intuitive and easier to debug',
+                                            ],
+                                        },
+                                        {
+                                            title: 'denoify - convert NPM pckage to Deno compatible modules',
+                                            descriptions: [
+                                                'I contributed to a NPM package that changes NPM packages to Deno modules to avoid wasting effort and code duplication, and added a configurable feature like jest.config.js, .prettierrc and .eslintrc. It now has over 800 likes and is used by more than 300 GitHub repos',
+                                            ],
+                                        },
+                                    ]}
+                                />
+                                <Section
+                                    project="Gitignored"
+                                    aboutAndDateList={[
+                                        {
+                                            date: 'May 2022 - Present',
+                                            about: 'A UX friendlier tools to generate .gitignore template',
+                                        },
+                                    ]}
+                                    descriptions={[
+                                        {
+                                            title: 'Web/Terminal application',
+                                            descriptions: [
+                                                'Developed a new MongoDB-based system with a user-friendly website for easily searching, copying and downloading .gitignore templates. Synced with original GitHub repository for latest versions. Received 8 developer stars',
+                                                'Recognized frequent use of terminal by developers. selected Rust for its strong features, performance, and emphasis on immutability and implemented caching to improve performance and prevent network errors by storing templates locally with option to update cache automatically',
+                                            ],
+                                        },
+                                    ]}
+                                />
+                                <Section
+                                    project="UTARi"
+                                    aboutAndDateList={[
+                                        {
+                                            date: 'Jan 2022 - March 2022',
+                                            about: 'Final Year Project',
+                                        },
+                                    ]}
+                                    descriptions={[
+                                        {
+                                            title: 'A web application for UTAR students to find rentable unit/room',
+                                            descriptions: [
+                                                'Identified UI/UX issues with UTAR website for room/unit rentals, proposed solution to improve user experience, selected as FYP topic, scrapped rooms/units data and stored in PostgreSQL Database, developed features such as Google Maps, bookmarking and one-click contact button for landlords/owners through WhatsApp, gained experience in pipelines, tests and data validation',
+                                            ],
+                                        },
+                                    ]}
+                                />
+                            </VerticalView>
+                            <VerticalView>
                                 <Title>EDUCATION</Title>
                                 <div
                                     style={{
@@ -424,97 +533,6 @@ const App = () => {
                                         <span>CGPA: 3.4051/4.00</span>
                                     </ParallelApart>
                                 </div>
-                            </VerticalView>
-                            <VerticalView>
-                                <Title>WORKING EXPERIENCES</Title>
-                                <Section
-                                    project="Didian"
-                                    aboutAndDateList={[
-                                        {
-                                            date: 'Jul 2022 - Jan 2023',
-                                            about: 'Fullstack Developer',
-                                        },
-                                        {
-                                            date: 'Oct 2021 - Dec 2021',
-                                            about: 'Internship Fullstack Developer',
-                                        },
-                                    ]}
-                                    descriptions={[
-                                        {
-                                            title: 'Write SQL query for data analytics',
-                                            descriptions: [
-                                                'Analyzed key metrics including agency acquisition and retention rates using Holistics.io. Identified & resolved potential issues by communicating with stakeholders & consulting with senior engineers. Wrote complex queries to present key insights from findings to investors and to track progress & KPIs of the company',
-                                            ],
-                                        },
-                                        {
-                                            title: 'Optimize price chart scrappers',
-                                            descriptions: [
-                                                `Implemented web scraping solutions to mirror booking status of units, utilising Puppeteer and Chromium, however, resulted in decreased performance due to high resource utilization. Rewrote scrapers to use HTTP requests and parse JSON responses, resulting in improved performance and efficiency as resource utilization is low and reduced risks of double booking. One of the price chart scraper reduced execution time from 2 minutes to 3 seconds`,
-                                            ],
-                                        },
-                                        {
-                                            title: 'Improved hot-reload and build time of internal dashboard and backend',
-                                            descriptions: [
-                                                'Webpack is slow, and developers have to wait some time to see the changes they have made. Alternative bundlers were proposed and implemented to improve performance and hot-reloading during development. Vite was successfully migrated for the dashboard and esbuild for the backend, overcoming compatibility issues. This resulted in increased developer satisfaction, as developers can now immediately check for the changes they have made',
-                                            ],
-                                        },
-                                        {
-                                            title: 'Replaced NPM with PNPM',
-                                            descriptions: [
-                                                `Implemented the transition from npm to pnpm as package manager, following consultations with the tech team, due to slow installation times (11-12 minutes) and security issues. Utilised pnpm's migration command to produce a lockfile in yaml and successfully reduced installation time from 11-12 minutes to 3-4 minutes, thereby improving the overall performance of the CI/CD pipeline. Documented the reasoning and process for the change and provided guidelines for other developers to follow, including snapshots of the CI/CD pipeline as evidence of improvement.`,
-                                            ],
-                                        },
-                                        {
-                                            title: 'Implement feature that allow marketing team to edit the Estore Project Teaser',
-                                            descriptions: [
-                                                'Collaborated with Marketing Team to streamline the process of updating Estore Project Teaser information by developing an internal dashboard interface, reducing need for external applications such as Excel sheets and providing user-friendly interface. Implemented using GraphQL to minimize data overfetching/underfetching, ensuring only necessary data is retrieved for mutation and catering for backward compatibility for future changes. Resulted in Marketing Team abandoning Excel sheets in favor of system, improving working efficiency and accuracy of data',
-                                            ],
-                                        },
-                                    ]}
-                                />
-                            </VerticalView>
-                            <VerticalView>
-                                <Title>OPEN SOURCES EXPERIENCES</Title>
-                                <Section
-                                    project="Gitignored"
-                                    aboutAndDateList={[
-                                        {
-                                            date: 'May 2022 - Present',
-                                            about: 'A UX friendlier tools to generate .gitignore template',
-                                        },
-                                    ]}
-                                    descriptions={[
-                                        {
-                                            title: 'Web application made with NextJS and MongoDB',
-                                            descriptions: [
-                                                'Developed a new system utilizing MongoDB to store and manage .gitignore templates, creating a user-friendly website to allow developers to easily search, copy and download the templates as the existing method/website had a poor user experience. Synchronized with original GitHub repository to ensure users had access to latest versions. Received 8 developer stars due to ease of use and user-friendly interface',
-                                            ],
-                                        },
-                                        {
-                                            title: 'Terminal application made with Rust',
-                                            descriptions: [
-                                                'Recognized frequent use of terminal by developers. Conducted research to determine most suitable low-level language and selected Rust for its strong features, performance, and emphasis on immutability. Implemented caching to improve performance and prevent network errors by storing templates locally with option to update cache automatically',
-                                            ],
-                                        },
-                                    ]}
-                                />
-                                <Section
-                                    project="UTARi"
-                                    aboutAndDateList={[
-                                        {
-                                            date: 'Jan 2022 - March 2022',
-                                            about: 'Final Year Project',
-                                        },
-                                    ]}
-                                    descriptions={[
-                                        {
-                                            title: 'A web application for UTAR students to find rentable unit/room',
-                                            descriptions: [
-                                                'Identified and addressed UI/UX issues with the UTAR website for finding room/unit rentals. Proposed a solution to improve the user experience and selected as the topic for my FYP. Successfully scrapped all rooms/units and stored the data in a PostgreSQL Database. Developed features such as displaying room/unit location on Google Maps, bookmarking options, and one-click contact button for landlords/owners through WhatsApp, to enhance the user experience by providing easy access to relevant information and direct communication with landlords/owners. Gained valuable experience in setting up pipelines for projects requiring a database connection, writing tests for each implementation, and ensuring data validation',
-                                            ],
-                                        },
-                                    ]}
-                                />
                             </VerticalView>
                             <VerticalView>
                                 <Title>TECHNICAL SKILLS</Title>
