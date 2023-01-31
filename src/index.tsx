@@ -398,7 +398,7 @@ const App = () => {
                         </IntroInformationView>
                         <InformationView>
                             <VerticalView>
-                                <Title>PROFESSIONAL EXPERIENCES</Title>
+                                <Title>PROFESSIONAL EXPERIENCE</Title>
                                 <Section
                                     project="Didian"
                                     aboutAndDateList={[
@@ -419,36 +419,36 @@ const App = () => {
                                             ],
                                         },
                                         {
-                                            title: 'Optimize price chart scrappers',
+                                            title: 'Optimize price chart scrapers',
                                             descriptions: [
-                                                'Implemented web scraping solutions with Puppeteer and Chromium, resulting in decreased performance due to high resource utilization. Rewrote scrapers to use HTTP requests and parse JSON responses, improving performance and efficiency with low resource utilization and reduced risks of double booking. Price chart scraper execution time reduced from 2 minutes to 3 seconds',
+                                                'Rewrote scrapers to use HTTP requests and parse JSON responses, improving performance and efficiency with low resource utilization and reduced risks of double booking. Price chart scraper execution time reduced from 2 minutes to 3 seconds',
                                             ],
                                         },
                                         {
                                             title: 'Improved hot-reload and build time of internal dashboard and backend',
                                             descriptions: [
-                                                `Webpack's slow performance and long wait times (20s-30s) to see changes were addressed by implementing vite for the dashboard and esbuild for the backend, resulting in increased developer satisfaction as changes are now visible immediately (0.5s-2s)`,
+                                                `Implemented vite for the dashboard and esbuild for the backend to address Webpack's slow performance and long wait times (20s-30s), resulting in increased developer satisfaction as changes are now visible immediately (0.5s-2s)`,
                                             ],
                                         },
                                         {
-                                            title: 'Replaced NPM with PNPM',
+                                            title: 'Replaced npm with pnpm',
                                             descriptions: [
-                                                `Implemented transition from npm to pnpm as package manager following tech team consultations due to slow installation times (11-12 minutes) and security issues. Utilised pnpm's migration command to generate yaml lockfile, resulting in improved installation time (3-4 minutes) and CI/CD pipeline performance. Documented reasoning and process, providing guidelines and snapshots of CI/CD pipeline as evidence of improvement`,
+                                                `Implemented transition from npm to pnpm as package manager following tech team consultations as npm had slow installation times (11-12 minutes) and security issues. Utilised pnpm's migration command to generate yaml lockfile, resulting X% improvement of installation time (3-4 minutes) and CI/CD pipeline performance. Documented reasoning and process, providing guidelines and snapshots of CI/CD pipeline as evidence of improvement`,
                                             ],
                                         },
                                         {
-                                            title: 'Implement feature that allow marketing team to edit the Estore Project Teaser',
+                                            title: 'Built tool to allow marketing team to create automated store fronts for agents',
                                             descriptions: [
-                                                `Developed an internal dashboard interface using GraphQL to streamline the process of updating Estore Project Teaser information, reducing need for external applications such as Excel sheets and providing user-friendly interface. This improved Marketing Team's working efficiency and accuracy of data, leading to abandonment of Excel sheets`,
+                                                `Developed an internal dashboard interface to streamline the process of updating Estore Project Teaser information, reducing need for external applications such as Excel sheets. This improved Marketing Team's working efficiency and accuracy of data, leading to abandonment of Excel sheets`,
                                             ],
                                         },
                                     ]}
                                 />
                             </VerticalView>
                             <VerticalView>
-                                <Title>OPEN SOURCES PROJECTS</Title>
+                                <Title>OPEN SOURCE PROJECTS</Title>
                                 <Section
-                                    project="NPM package"
+                                    project="npm package"
                                     aboutAndDateList={[
                                         {
                                             date: 'Dec 2021 - Present',
@@ -459,13 +459,13 @@ const App = () => {
                                         {
                                             title: 'parse-dont-validate - verify the shape of data without using schema',
                                             descriptions: [
-                                                'Asserting the type of data received is essential to reduce type errors. This package, with over 1000 weekly downloads and 33 repositories, returns data in the expected type/shape with functions, making it intuitive and easier to debug',
+                                                'Asserting the type of data received is essential to reduce type errors. Published and currently maintain this package which has over 1000 weekly downloads and is used by 33 repositories to return data in the expected type/shape with functions to make it easier to debug',
                                             ],
                                         },
                                         {
-                                            title: 'denoify - convert NPM pckage to Deno compatible modules',
+                                            title: 'denoify - convert npm pckage to deno compatible modules',
                                             descriptions: [
-                                                'I contributed to a NPM package that changes NPM packages to Deno modules to avoid wasting effort and code duplication, and added a configurable feature like jest.config.js, .prettierrc and .eslintrc. It now has over 800 likes and is used by more than 300 GitHub repos',
+                                                'Contributed to an npm package that changes npm packages to deno modules. Wrote a configuration file that informs the developer how the npm package will be converted to deno modules, thus avoiding wasting effort on rewriting code. The package has now gained over 800 likes and is used by more than 300 GitHub repositories',
                                             ],
                                         },
                                     ]}
@@ -475,15 +475,15 @@ const App = () => {
                                     aboutAndDateList={[
                                         {
                                             date: 'May 2022 - Present',
-                                            about: 'A UX friendlier tools to generate .gitignore template',
+                                            about: 'A tool to generate .gitignore template',
                                         },
                                     ]}
                                     descriptions={[
                                         {
                                             title: 'Web/Terminal application',
                                             descriptions: [
-                                                'Developed a new MongoDB-based system with a user-friendly website for easily searching, copying and downloading .gitignore templates. Synced with original GitHub repository for latest versions. Received 8 developer stars',
-                                                'Recognized frequent use of terminal by developers. selected Rust for its strong features, performance, and emphasis on immutability and implemented caching to improve performance and prevent network errors by storing templates locally with option to update cache automatically',
+                                                'Developed a new system with a user-friendly website for easily searching, copying and downloading .gitignore templates. Synced with original GitHub repository for latest versions. Received 8 developer stars',
+                                                'Also built an equivalent command line program written in Rust. Implemented caching to improve performance and prevent network errors by storing templates locally with an option to update the cache automatically',
                                             ],
                                         },
                                     ]}
@@ -500,7 +500,7 @@ const App = () => {
                                         {
                                             title: 'A web application for UTAR students to find rentable unit/room',
                                             descriptions: [
-                                                'Identified UI/UX issues with UTAR website for room/unit rentals, proposed solution to improve user experience, selected as FYP topic, scrapped rooms/units data and stored in PostgreSQL Database, developed features such as Google Maps, bookmarking and one-click contact button for landlords/owners through WhatsApp, gained experience in pipelines, tests and data validation',
+                                                'Identified UI/UX issues with the UTAR website for searchable rental rooms/units, proposed a solution to improve UX by implementing a new interface, and selected it as my FYP topic. Scraped rooms/units data and stored it in a PostgreSQL Database, developed features such as Google Maps, bookmarking, and a one-click contact button for landlords/owners through WhatsApp. I gained experience in setting up CI/CD pipelines, tests, and data validation',
                                             ],
                                         },
                                     ]}
@@ -530,7 +530,7 @@ const App = () => {
                                             Bachelor of Science (Honours)
                                             Software Engineering
                                         </span>
-                                        <span>CGPA: 3.4051/4.00</span>
+                                        <span>CGPA: 3.40/4.00</span>
                                     </ParallelApart>
                                 </div>
                             </VerticalView>

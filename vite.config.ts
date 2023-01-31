@@ -3,7 +3,7 @@ import solidPlugin from 'vite-plugin-solid';
 
 export default defineConfig(() => {
     const serveConfig = {
-        port: 9999,
+        port: 8080,
     };
     return {
         root: `${process.cwd()}/src`,
