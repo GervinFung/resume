@@ -433,7 +433,7 @@ const App = () => {
                                         {
                                             title: 'Replaced npm with pnpm',
                                             descriptions: [
-                                                `Implemented transition from npm to pnpm as package manager following tech team consultations as npm had slow installation times (11-12 minutes) and security issues. Utilised pnpm's migration command to generate yaml lockfile, resulting X% improvement of installation time (3-4 minutes) and CI/CD pipeline performance. Documented reasoning and process, providing guidelines and snapshots of CI/CD pipeline as evidence of improvement`,
+                                                `Implemented transition from npm to pnpm as package manager following tech team consultations as npm had slow installation times (11-12 minutes) and security issues. Utilised pnpm's migration command to generate yaml lockfile, resulting 66% improvement of installation time (3-4 minutes) and CI/CD pipeline performance. Documented reasoning and process, providing guidelines and snapshots of CI/CD pipeline as evidence of improvement`,
                                             ],
                                         },
                                         {

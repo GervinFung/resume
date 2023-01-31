@@ -2,6 +2,7 @@ import fs from 'fs';
 import puppeteer from 'puppeteer';
 import childProcess from 'child_process';
 import treeKill from 'tree-kill';
+import { serveConfig } from '../../config/serve';
 
 const generateAsPdf = async () => {
     const browser = await puppeteer.launch({
@@ -10,8 +11,7 @@ const generateAsPdf = async () => {
     });
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
-    const port = 9999;
-    const goto = `http://localhost:${port}`;
+    const goto = `http://localhost:${serveConfig.port}`;
     const server = childProcess
         .exec('make start')
         .on('spawn', () => console.log(`Going to ${goto}`))
