@@ -58,7 +58,7 @@ const generateAsPdf = async () => {
         }px`,
         height: `${
             (await page.evaluate(() => document.documentElement.offsetHeight)) +
-            200
+            500
         }px`,
     });
     await page.close();
