@@ -37,6 +37,9 @@ const generateAsPdf = async () => {
             }
         });
     });
+    childProcess.execSync(`curl ${goto}`, {
+        stdio: 'inherit',
+    });
     await page.goto(goto, {
         waitUntil: 'networkidle0',
     });
