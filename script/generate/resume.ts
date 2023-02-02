@@ -30,9 +30,10 @@ const generateAsPdf = async () => {
     server.stderr?.setEncoding('utf-8');
     await new Promise<void>((resolve) => {
         server?.stdout?.on('data', (data) => {
-            console.log(data);
+            console.log({
+                data,
+            });
             if (data.includes(goto)) {
-                console.log('Generating Resume');
                 resolve();
             }
         });

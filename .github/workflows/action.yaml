@@ -21,9 +21,3 @@ jobs:
 
             - name: Install Depedencies
               run: make install
-
-            - name: Run Build
-              run: make build
-
-            - name: Generate Resume
-              run: make generate
