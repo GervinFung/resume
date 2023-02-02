@@ -11,7 +11,7 @@ const generateAsPdf = async () => {
     });
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
-    const goto = `http://localhost:${serveConfig.port}`;
+    const goto = `http://0.0.0.0:${serveConfig.port}`;
     const server = childProcess
         .exec('make start')
         .on('spawn', () => console.log(`Going to ${goto}`))
@@ -33,7 +33,11 @@ const generateAsPdf = async () => {
             console.log({
                 data,
             });
-            if (data.includes(goto)) {
+            if (
+                data.includes('Local') &&
+                data.includes('http') &&
+                data.includes('--host')
+            ) {
                 resolve();
             }
         });
