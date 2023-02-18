@@ -7,10 +7,13 @@ specifiers:
   puppeteer: ^19.4.1
   solid-js: ^1.6.11
   tree-kill: ^1.2.2
-  typescript: ^4.9.4
+  typescript: ^4.9.5
   vite: ^4.0.4
   vite-node: ^0.26.3
   vite-plugin-solid: ^2.5.0
+
+dependencies:
+  typescript: 4.9.5
 
 devDependencies:
   '@types/node': 18.11.18
@@ -19,7 +22,6 @@ devDependencies:
   puppeteer: 19.4.1
   solid-js: 1.6.11
   tree-kill: 1.2.2
-  typescript: 4.9.4
   vite: 4.0.4_@types+node@18.11.18
   vite-node: 0.26.3_@types+node@18.11.18
   vite-plugin-solid: 2.5.0_solid-js@1.6.11+vite@4.0.4
@@ -1374,11 +1376,11 @@ packages:
     hasBin: true
     dev: true
 
-  /typescript/4.9.4:
-    resolution: {integrity: sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==}
+  /typescript/4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
+    dev: false
 
   /ufo/1.0.1:
     resolution: {integrity: sha512-boAm74ubXHY7KJQZLlXrtMz52qFvpsbOxDcZOnw/Wf+LS4Mmyu7JxmzD4tDLtUQtmZECypJ0FrCz4QIe6dvKRA==}
