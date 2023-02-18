@@ -20,51 +20,53 @@ type TechnicalSkills = Readonly<{
 }>;
 
 const data = {
-    professionalExperiences: (): Experience => ({
-        project: 'Didian',
-        aboutAndDateList: [
-            {
-                date: 'Jul 2022 - Jan 2023',
-                about: 'Fullstack Developer',
-            },
-            {
-                date: 'Oct 2021 - Dec 2021',
-                about: 'Internship Fullstack Developer',
-            },
-        ],
-        descriptions: [
-            {
-                title: 'Write SQL query for data analytics',
-                descriptions: [
-                    'Analyzed key metrics with Holistics.io, identified & resolved issues, wrote complex queries to present insights to investors & track progress & KPIs',
-                ],
-            },
-            {
-                title: 'Optimize price chart scrapers',
-                descriptions: [
-                    'Rewrote scrapers to use HTTP requests and parse JSON responses, improving performance and efficiency with low resource utilization and reduced risks of double booking. Price chart scraper execution time reduced from 2 minutes to 3 seconds',
-                ],
-            },
-            {
-                title: 'Improved hot-reload and build time of internal dashboard and backend',
-                descriptions: [
-                    `Implemented vite for the dashboard and esbuild for the backend to address Webpack's slow performance and long wait times (20s-30s), resulting in increased developer satisfaction as changes are now visible immediately (0.5s-2s)`,
-                ],
-            },
-            {
-                title: 'Replaced npm with pnpm',
-                descriptions: [
-                    `Implemented transition from npm to pnpm as package manager following tech team consultations as npm had slow installation times (11-12 minutes) and security issues. Utilised pnpm's migration command to generate yaml lockfile, resulting 66% improvement of installation time (3-4 minutes) and CI/CD pipeline performance. Documented reasoning and process, providing guidelines and snapshots of CI/CD pipeline as evidence of improvement`,
-                ],
-            },
-            {
-                title: 'Built tool to allow marketing team to create automated store fronts for agents',
-                descriptions: [
-                    `Developed an internal dashboard interface to streamline the process of updating Estore Project Teaser information, reducing need for external applications such as Excel sheets. This improved Marketing Team's working efficiency and accuracy of data, leading to abandonment of Excel sheets`,
-                ],
-            },
-        ],
-    }),
+    professionalExperiences: {
+        didian: (): Experience => ({
+            project: 'Didian',
+            aboutAndDateList: [
+                {
+                    date: 'Jul 2022 - Jan 2023',
+                    about: 'Fullstack Developer',
+                },
+                {
+                    date: 'Oct 2021 - Dec 2021',
+                    about: 'Internship Fullstack Developer',
+                },
+            ],
+            descriptions: [
+                {
+                    title: 'Write SQL query for data analytics',
+                    descriptions: [
+                        'Analyzed key metrics with Holistics.io, identified & resolved issues, wrote complex queries to present insights to investors & track progress & KPIs',
+                    ],
+                },
+                {
+                    title: 'Optimize price chart scrapers',
+                    descriptions: [
+                        'Rewrote scrapers to use HTTP requests and parse JSON responses, improving performance and efficiency with low resource utilization and reduced risks of double booking. Price chart scraper execution time reduced from 2 minutes to 3 seconds',
+                    ],
+                },
+                {
+                    title: 'Improved hot-reload and build time of internal dashboard and backend',
+                    descriptions: [
+                        `Implemented vite for the dashboard and esbuild for the backend to address Webpack's slow performance and long wait times (20s-30s), resulting in increased developer satisfaction as changes are now visible immediately (0.5s-2s)`,
+                    ],
+                },
+                {
+                    title: 'Replaced npm with pnpm',
+                    descriptions: [
+                        `Implemented transition from npm to pnpm as package manager following tech team consultations as npm had slow installation times (11-12 minutes) and security issues. Utilised pnpm's migration command to generate yaml lockfile, resulting 66% improvement of installation time (3-4 minutes) and CI/CD pipeline performance. Documented reasoning and process, providing guidelines and snapshots of CI/CD pipeline as evidence of improvement`,
+                    ],
+                },
+                {
+                    title: 'Built tool to allow marketing team to create automated store fronts for agents',
+                    descriptions: [
+                        `Developed an internal dashboard interface to streamline the process of updating Estore Project Teaser information, reducing need for external applications such as Excel sheets. This improved Marketing Team's working efficiency and accuracy of data, leading to abandonment of Excel sheets`,
+                    ],
+                },
+            ],
+        }),
+    },
     openSourceProjects: {
         npmPackages: (): Experience => ({
             project: 'npm package',
