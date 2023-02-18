@@ -25,13 +25,17 @@ generate: generate-env build generate-resume
 
 ## dev
 next=$(NODE_BIN)next
+vite=$(NODE_BIN)vite
 
 ## env
 dev:
-	$(NODE_BIN)vite --host
+	$(vite) --host
 
 build:
-	$(NODE_BIN)vite build
+	$(vite) build
 
 start:
-	$(NODE_BIN)vite
+	$(vite)
+
+compile:
+	$(NODE_BIN)tsc -p config/tsconfig/build.json
