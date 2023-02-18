@@ -5,6 +5,9 @@
     "license": "MIT",
     "module": "compiled/data.js",
     "types": "compiled/data.d.ts",
+    "scripts": {
+        "postinstall": "make build"
+    },
     "devDependencies": {
         "@types/node": "^18.11.18",
         "axios": "^1.2.2",
