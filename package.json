@@ -6,7 +6,7 @@
     "module": "compiled/data.js",
     "types": "compiled/data.d.ts",
     "scripts": {
-        "postinstall": "make build"
+        "postinstall": "make compile"
     },
     "dependencies": {
         "typescript": "^4.9.5"
