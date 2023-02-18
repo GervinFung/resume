@@ -6,7 +6,7 @@
     "module": "compiled/data.js",
     "types": "compiled/data.d.ts",
     "scripts": {
-        "postinstall": "make compile"
+        "postinstall": "make generate-env && make compile"
     },
     "dependencies": {
         "@types/node": "^18.11.18",
