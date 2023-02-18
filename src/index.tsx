@@ -315,7 +315,7 @@ const App = () => {
         domain: envs.domain,
     } as const;
 
-    const { professionalExperiences, openSourceProjects } = data;
+    const { openSourceProjects, professionalExperiences } = data;
 
     const education = data.education();
     const technicalSkills = data.technicalSkills();
@@ -383,7 +383,9 @@ const App = () => {
                         <InformationView>
                             <VerticalView>
                                 <Title>PROFESSIONAL EXPERIENCE</Title>
-                                <Section {...professionalExperiences()} />
+                                <Section
+                                    {...professionalExperiences.didian()}
+                                />
                             </VerticalView>
                             <VerticalView>
                                 <Title>OPEN SOURCE PROJECTS</Title>
