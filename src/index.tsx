@@ -419,28 +419,6 @@ const App = () => {
                                 </div>
                             </VerticalView>
                             <VerticalView>
-                                <Title>TECHNICAL SKILLS</Title>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        'justify-content': 'space-between',
-                                    }}
-                                >
-                                    <ListSection
-                                        title="Languages"
-                                        items={technicalSkills.languages}
-                                    />
-                                    <ListSection
-                                        title="Frontend Development"
-                                        items={technicalSkills.frontend}
-                                    />
-                                    <ListSection
-                                        title="Backend Development"
-                                        items={technicalSkills.backend}
-                                    />
-                                </div>
-                            </VerticalView>
-                            <VerticalView>
                                 <Title>SPOKEN LANGUAGES</Title>
                                 <span>
                                     Mandarin ({spokenLanguages.mandarin}),
@@ -448,6 +426,19 @@ const App = () => {
                                     {spokenLanguages.malay}), Cantonese (
                                     {spokenLanguages.cantonese})
                                 </span>
+                            </VerticalView>
+                            <VerticalView>
+                                <Title>TECHNICAL SKILLS</Title>
+                                <div>
+                                    Ther is a few, but it's best to refer{' '}
+                                    <a
+                                        href="https://github.com/GervinFung/GervinFung#readme"
+                                        target="_blank"
+                                        rel="external nofollow noopener noreferrer"
+                                    >
+                                        here
+                                    </a>
+                                </div>
                             </VerticalView>
                         </InformationView>
                     </InformationView>
