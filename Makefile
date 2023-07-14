@@ -1,6 +1,7 @@
 .PHONY: build test all
 MAKEFLAGS += --silent
 
+
 all:
 	make lint &&\
 		make typecheck &&\

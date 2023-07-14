@@ -1,14 +1,11 @@
 import axios from 'axios';
-import parse from 'parse-dont-validate';
 import fs from 'fs';
 
 const generateAsEnv = async () => {
     const { data } = await axios.get(
         'https://api.github.com/repos/GervinFung/my-web'
     );
-    const domain = parse(data.homepage)
-        .asString()
-        .elseThrow('homepage is undefined');
+    const domain = data.homepage as string;
     const envs = [
         'const envs = {',
         `domain: '${domain}'`,
