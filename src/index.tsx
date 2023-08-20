@@ -227,25 +227,6 @@ const Section = ({ project, descriptions, aboutAndDateList }: Experience) => (
     </div>
 );
 
-const ListSection = ({ title, items }: TechnicalSkills) => (
-    <div>
-        <VerticalView>
-            <BoldText>{title}</BoldText>
-            <div>
-                <ol>
-                    <SolidJs.Index each={items}>
-                        {(item) => (
-                            <li>
-                                <span>{item()}</span>
-                            </li>
-                        )}
-                    </SolidJs.Index>
-                </ol>
-            </div>
-        </VerticalView>
-    </div>
-);
-
 const InformationView = ({ children }: Children) => (
     <div
         style={{
@@ -306,7 +287,7 @@ const Font = ({
 );
 
 const App = () => {
-    const fontFamily = 'JetBrains Mono';
+    const fontFamily = 'Roboto Mono';
 
     const links = {
         gmail: 'gervinfungdaxuen@gmail.com',
@@ -397,6 +378,7 @@ const App = () => {
                             </VerticalView>
                             <VerticalView>
                                 <Title>EDUCATION</Title>
+
                                 <div
                                     style={{
                                         margin: '0 0 16px 0',
@@ -420,26 +402,30 @@ const App = () => {
                             </VerticalView>
                             <VerticalView>
                                 <Title>SPOKEN LANGUAGES</Title>
-                                <span>
-                                    Mandarin ({spokenLanguages.mandarin}),
-                                    English ({spokenLanguages.english}), Malay (
-                                    {spokenLanguages.malay}), Cantonese (
-                                    {spokenLanguages.cantonese})
-                                </span>
-                            </VerticalView>
-                            <VerticalView>
-                                <Title>TECHNICAL SKILLS</Title>
                                 <div>
-                                    Ther is a few, but it's best to refer{' '}
-                                    <a
-                                        href="https://github.com/GervinFung/GervinFung#readme"
-                                        target="_blank"
-                                        rel="external nofollow noopener noreferrer"
-                                    >
-                                        here
-                                    </a>
+                                    <span>
+                                        Mandarin ({spokenLanguages.mandarin}),
+                                        English ({spokenLanguages.english}),
+                                        Malay ({spokenLanguages.malay}),
+                                        Cantonese ({spokenLanguages.cantonese})
+                                    </span>
                                 </div>
                             </VerticalView>
+                            <div style={{ margin: '16px 0 0 0' }}>
+                                <VerticalView>
+                                    <Title>TECHNICAL SKILLS</Title>
+                                    <div>
+                                        There are a few, but it's best to refer{' '}
+                                        <a
+                                            href="https://github.com/GervinFung/GervinFung#readme"
+                                            target="_blank"
+                                            rel="external nofollow noopener noreferrer"
+                                        >
+                                            here
+                                        </a>
+                                    </div>
+                                </VerticalView>
+                            </div>
                         </InformationView>
                     </InformationView>
                 </div>

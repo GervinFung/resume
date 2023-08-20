@@ -78,9 +78,15 @@ const data = {
             ],
             descriptions: [
                 {
-                    title: 'parse-dont-validate - verify the shape of data without using schema',
+                    title: 'ts-add-js-extension - add javascript file extension',
                     descriptions: [
-                        'Asserting the type of data received is essential to reduce type errors. Published and currently maintain this package which has over 1000 weekly downloads and is used by 33 repositories to return data in the expected type/shape with functions to make it easier to debug',
+                        'Developed a tool that resolves import/export paths and automatically adds JavaScript file extensions, effectively resolving a common issue encountered in TypeScript projects. This tool has gained significant recognition with 8 stars and contributions from various users, particularly benefiting npm package maintainers',
+                    ],
+                },
+                {
+                    title: 'gen-env-type-def - genereate type definition for environment variables',
+                    descriptions: [
+                        'Developed a type generation tool for TypeScript projects, leveraging discriminated unions for type safety with environment variables, supporting process.env and import.meta.env. Recognized with 5 stars from developer',
                     ],
                 },
                 {
