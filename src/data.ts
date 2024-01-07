@@ -14,11 +14,6 @@ type Experience = Readonly<{
     >;
 }>;
 
-type TechnicalSkills = Readonly<{
-    title: string;
-    items: Strings;
-}>;
-
 const data = {
     professionalExperiences: {
         didian: (): Experience => ({
@@ -66,6 +61,57 @@ const data = {
                 },
             ],
         }),
+        recogine: (): Experience => ({
+            project: 'Recogine',
+            aboutAndDateList: [
+                {
+                    date: 'June 2023 - Aug 2023',
+                    about: 'Software Engineer',
+                },
+                {
+                    date: 'Aug 2023 - Jan 2024',
+                    about: 'R&D Software Engineer',
+                },
+            ],
+            descriptions: [
+                {
+                    title: 'Introduced git commit message convention',
+                    descriptions: [
+                        'Enhanced collaboration and clarity in our codebase with convention for more meaningful and streamlined development workflows',
+                    ],
+                },
+                {
+                    title: 'Introduced typescript',
+                    descriptions: [
+                        'Improved code quality and developer experience with type safety and intellisense for building frontend applications',
+                    ],
+                },
+                {
+                    title: 'Bus lane detection',
+                    descriptions: [
+                        'Created a PWA for detecting bus parking violation system that periodically takes photos of the bus lane and sends them to the backend for processing. The PWA is also able to uniquely identify bus and location of the bus and bus lane on a map',
+                    ],
+                },
+                {
+                    title: 'Improved hot-reload and build time of web product',
+                    descriptions: [
+                        `Implemented vite for recent web app and tackled webpack's slow performance and long wait times (10s-20s), resulting in increased developer satisfaction as changes are now visible immediately (0.5s-2s)`,
+                    ],
+                },
+                {
+                    title: 'Introduce pnpm',
+                    descriptions: [
+                        `Shifted from npm to pnpm as the package manager to address issues related to slow installation times (11-12 minutes) and security concerns. Achieved a 66% improvement in installation time (3-4 minutes) and enhanced CI/CD pipeline performance. Successfully resolved a problematic installation process caused by npm`,
+                    ],
+                },
+                {
+                    title: 'Virtual tool plaza',
+                    descriptions: [
+                        `Engineered a React and TypeScript-powered dashboard for a virtual toll plaza, revolutionizing the toll collection process by eliminating physical stations to prevent congestion and ensure seamless journeys. The dashboard includes comprehensive reporting features, offering insights through hourly, daily, monthly, and annual reports`,
+                    ],
+                },
+            ],
+        }),
     },
     openSourceProjects: {
         npmPackages: (): Experience => ({
@@ -80,7 +126,7 @@ const data = {
                 {
                     title: 'ts-add-js-extension - add javascript file extension',
                     descriptions: [
-                        'Developed a tool that resolves import/export paths and automatically adds JavaScript file extensions, effectively resolving a common issue encountered in TypeScript projects. This tool has gained significant recognition with 8 stars and contributions from various users, particularly benefiting npm package maintainers',
+                        'Developed a tool that resolves import/export paths and automatically adds JavaScript file extensions, effectively resolving a common issue encountered in TypeScript projects. This tool has gained significant recognition with 17 stars and contributions from various users, particularly benefiting npm package maintainers',
                     ],
                 },
                 {
@@ -133,18 +179,41 @@ const data = {
             ],
         }),
     },
-    education: () =>
-        ({
-            univerisity: 'Universiti Tunku Abdul Rahman',
-            campus: 'Sungai Long, Selangor, Malaysia',
-            date: 'May 2019 - Dec 2022',
-            degree: 'Bachelor of Science (Honours) Software Engineering',
-            cgpa: '3.40',
-        } as const),
+    closedSourceProjects: {
+        malaysianPayGap: (): Experience => ({
+            project: 'Malaysian Pay Gap',
+            aboutAndDateList: [
+                {
+                    date: 'April 2023 - Jan 2024',
+                    about: 'developer / tech lead',
+                },
+            ],
+            descriptions: [
+                {
+                    title: 'internal dashboard',
+                    descriptions: [
+                        'Partnered with founders to craft an internal dashboard that seamlessly integrates event hosting and blog publishing. This collaborative effort, driven by next.js, supabase, pgtyped, and trpc, resulted in a cohesive product experience. Noteworthy features include robust authentication, authorization, role-based access control as well as unit/integration testing',
+                    ],
+                },
+                {
+                    title: 'landing page',
+                    descriptions: [
+                        'Collaborated closely with founders and a designer to build an engaging landing page leveraging next.js and material ui. Offered guidance and consultation throughout the iterative refinement process',
+                    ],
+                },
+            ],
+        }),
+    },
     technicalSkills: () =>
         ({
             languages: ['TypeScript', 'Java / C#', 'Rust', 'Dart'],
-            backend: ['Node', 'Express', 'GraphQL', 'MongoDB / PostgreSQl'],
+            backend: [
+                'Node',
+                'Express',
+                'GraphQL',
+                'MongoDB / PostgreSQl',
+                'Trpc',
+            ],
             frontend: [
                 'React / React Native',
                 'Material UI',
@@ -161,6 +230,6 @@ const data = {
         } as const),
 } as const;
 
-export type { Experience, TechnicalSkills };
+export type { Experience };
 
 export default data;
