@@ -3,7 +3,7 @@ import * as SolidJs from 'solid-js';
 import * as SolidWeb from 'solid-js/web';
 import envs from './env';
 import type { Strings } from './type';
-import data, { Experience, TechnicalSkills } from './data';
+import data, { Experience } from './data';
 
 type Children = Readonly<{
     children: SolidJs.JSXElement;
@@ -88,18 +88,6 @@ const FlexCenter = ({ children }: Children) => (
             display: 'flex',
             'align-items': 'center',
             margin: '0 0 8px 0',
-        }}
-    >
-        {children}
-    </div>
-);
-
-const ParallelApart = ({ children }: Children) => (
-    <div
-        style={{
-            display: 'flex',
-            'align-items': 'center',
-            'justify-content': 'space-between',
         }}
     >
         {children}
@@ -296,9 +284,12 @@ const App = () => {
         domain: envs.domain,
     } as const;
 
-    const { openSourceProjects, professionalExperiences } = data;
+    const {
+        openSourceProjects,
+        professionalExperiences,
+        closedSourceProjects,
+    } = data;
 
-    const education = data.education();
     const technicalSkills = data.technicalSkills();
     const spokenLanguages = data.spokenLanguages();
 
@@ -365,6 +356,9 @@ const App = () => {
                             <VerticalView>
                                 <Title>PROFESSIONAL EXPERIENCE</Title>
                                 <Section
+                                    {...professionalExperiences.recogine()}
+                                />
+                                <Section
                                     {...professionalExperiences.didian()}
                                 />
                             </VerticalView>
@@ -377,28 +371,10 @@ const App = () => {
                                 <Section {...openSourceProjects.utari()} />
                             </VerticalView>
                             <VerticalView>
-                                <Title>EDUCATION</Title>
-
-                                <div
-                                    style={{
-                                        margin: '0 0 16px 0',
-                                    }}
-                                >
-                                    <ParallelApart>
-                                        <div>
-                                            <BoldText>
-                                                {education.univerisity}
-                                            </BoldText>
-                                            <span> - </span>
-                                            <span>{education.campus}</span>
-                                        </div>
-                                        <span>{education.date}</span>
-                                    </ParallelApart>
-                                    <ParallelApart>
-                                        <span>{education.degree}</span>
-                                        <span>CGPA: {education.cgpa}/4.00</span>
-                                    </ParallelApart>
-                                </div>
+                                <Title>CLOSED SOURCE PROJECTS</Title>
+                                <Section
+                                    {...closedSourceProjects.malaysianPayGap()}
+                                />
                             </VerticalView>
                             <VerticalView>
                                 <Title>SPOKEN LANGUAGES</Title>

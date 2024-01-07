@@ -8,7 +8,7 @@
         "solid-js": "^1.7.8"
     },
     "devDependencies": {
-        "@poolofdeath20/eslint-config": "^0.1.0",
+        "@poolofdeath20/eslint-config": "^0.3.2",
         "@types/node": "^20.4.1",
         "axios": "^1.4.0",
         "puppeteer": "^20.8.1",
