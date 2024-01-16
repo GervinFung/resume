@@ -280,7 +280,7 @@ const App = () => {
     const links = {
         gmail: 'gervinfungdaxuen@gmail.com',
         github: 'https://github.com/GervinFung',
-        linkedin: 'https://www.linkedin.com/in/gervin-fung-387409209',
+        linkedin: 'https://my.linkedin.com/in/gervin-fung-387409209',
         domain: envs.domain,
     } as const;
 
