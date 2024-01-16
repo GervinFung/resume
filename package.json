@@ -4,6 +4,9 @@
     "version": "0.0.0",
     "description": "A web resume that can be generated into pdf",
     "license": "MIT",
+    "scripts": {
+        "postinstall": "make generate-env"
+    },
     "dependencies": {
         "solid-js": "^1.7.8"
     },
