@@ -328,7 +328,7 @@ const App = () => {
                                 items={[
                                     links.gmail,
                                     '011-5548-4654',
-                                    'Puchong, Selangor, Malaysia',
+                                    'Ipoh, Perak, Malaysia',
                                 ]}
                             />
                             <HorizontalViews
