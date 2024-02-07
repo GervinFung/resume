@@ -126,7 +126,7 @@ const data = {
                 {
                     title: 'ts-add-js-extension - add javascript file extension',
                     descriptions: [
-                        'Developed a tool that resolves import/export paths and automatically adds JavaScript file extensions, effectively resolving a common issue encountered in TypeScript projects. This tool has gained significant recognition with 17 stars and contributions from various users, particularly benefiting npm package maintainers',
+                        'Developed a tool enhancing TypeScript projects by resolving import/export paths and appending JavaScript file extensions. Acknowledged with 18 stars and contributions, particularly aiding npm package maintainers within the Snabbdom frontend library, boasting 11k stars',
                     ],
                 },
                 {
@@ -220,14 +220,14 @@ const data = {
                 'Swing / JavaFX',
                 'Emotion / Styled Components',
             ],
-        } as const),
+        }) as const,
     spokenLanguages: () =>
         ({
             mandarin: 'Native',
             english: 'MUET Band 4',
             malay: 'Conversational',
             cantonese: 'Native',
-        } as const),
+        }) as const,
 } as const;
 
 export type { Experience };
